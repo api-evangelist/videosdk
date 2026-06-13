@@ -1,0 +1,103 @@
+name: VideoSDK Plans and Pricing
+description: Pricing plans for VideoSDK real-time communication APIs, including Free,
+  Pay-As-You-Go, and Enterprise tiers with usage-based participant-minute billing.
+version: '0.1'
+url: https://www.videosdk.live/pricing
+plans:
+  - name: Free
+    description: Free tier for developers to explore VideoSDK capabilities with monthly
+      free minutes and limited concurrency.
+    price: 0.00
+    currency: USD
+    billingCycle: monthly
+    features:
+      - 10,000 free participant minutes per month
+      - 300 minutes per month in add-on credits for recording and transcription
+      - Maximum 50 concurrent participants across all sessions
+      - Maximum 100 concurrent live stream viewers
+      - 1 concurrent recording request
+      - 1 concurrent HLS encoding request
+      - 1 concurrent RTMP-Out stream
+    limits:
+      concurrentParticipants: 50
+      concurrentViewers: 100
+      concurrentRecordings: 1
+      concurrentHlsEncodings: 1
+      concurrentRtmpOut: 1
+      freeMinutesPerMonth: 10000
+  - name: Pay-As-You-Go
+    description: Usage-based pricing for production applications, billed by participant
+      minute with no upfront commitment. Volume discounts apply at 100,000+ monthly
+      minutes.
+    price: null
+    currency: USD
+    billingCycle: monthly
+    usageBased: true
+    rates:
+      - service: Audio Call
+        unit: per participant-minute
+        rate: 0.0006
+        currency: USD
+      - service: Video Call HD (720p)
+        unit: per participant-minute
+        rate: 0.003
+        currency: USD
+      - service: Video Call Full HD (1080p)
+        unit: per participant-minute
+        rate: 0.007
+        currency: USD
+      - service: Video Call 2K / 2K+
+        unit: per participant-minute
+        rate: 0.007
+        currency: USD
+      - service: Recording
+        unit: per minute
+        rateMin: 0.004
+        rateMax: 0.030
+        currency: USD
+      - service: Transcription
+        unit: per minute
+        rateMin: 0.004
+        rateMax: 0.030
+        currency: USD
+      - service: AI Summary
+        unit: per minute
+        rateMin: 0.004
+        rateMax: 0.030
+        currency: USD
+    features:
+      - All Free plan features
+      - Maximum 100 concurrent participants across all sessions
+      - Maximum 500 concurrent live stream viewers
+      - 5 concurrent recording requests
+      - 5 concurrent HLS encoding requests
+      - 5 concurrent RTMP-Out streams
+      - Volume discounts at 100,000+ monthly minutes
+    limits:
+      concurrentParticipants: 100
+      concurrentViewers: 500
+      concurrentRecordings: 5
+      concurrentHlsEncodings: 5
+      concurrentRtmpOut: 5
+    billingFormula: "Participant Minutes = Number of Participants (N) x Minutes Consumed (M)"
+  - name: Enterprise
+    description: Custom pricing and limits tailored to high-volume enterprise requirements
+      with dedicated support and management.
+    price: null
+    currency: USD
+    billingCycle: custom
+    contactRequired: true
+    contactEmail: support@videosdk.live
+    contactUrl: https://www.videosdk.live/support
+    features:
+      - All Pay-As-You-Go features
+      - Custom concurrent participant limits
+      - Custom concurrent viewer limits
+      - Custom recording and streaming concurrency
+      - Dedicated account management
+      - Priority support
+      - Custom SLA agreements
+    limits:
+      concurrentParticipants: custom
+      concurrentViewers: custom
+      concurrentRecordings: custom

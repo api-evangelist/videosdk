@@ -1,0 +1,88 @@
+name: VideoSDK Rate Limits
+description: API usage quota and concurrency limits for VideoSDK real-time communication
+  APIs, covering concurrent participants, live stream viewers, recordings, HLS encoding,
+  and RTMP-Out streams per plan tier.
+version: '0.1'
+url: https://docs.videosdk.live/tutorials/quota-limit-and-plan
+rateLimits:
+  - name: Concurrent Video Participants
+    description: Maximum number of participants that can be simultaneously active
+      across all sessions in the organization. Participant count is tracked across
+      all active sessions combined, not per individual session.
+    scope: organization
+    limits:
+      - plan: Free
+        value: 50
+        unit: concurrent participants
+      - plan: Pay-As-You-Go
+        value: 100
+        unit: concurrent participants
+      - plan: Enterprise
+        value: custom
+        unit: concurrent participants
+  - name: Concurrent Live Stream Viewers
+    description: Maximum number of viewers that can simultaneously watch live streams
+      (Interactive Live Streaming / ILS) across all active streams in the organization.
+    scope: organization
+    limits:
+      - plan: Free
+        value: 100
+        unit: concurrent viewers
+      - plan: Pay-As-You-Go
+        value: 500
+        unit: concurrent viewers
+      - plan: Enterprise
+        value: custom
+        unit: concurrent viewers
+  - name: Concurrent Recording Requests
+    description: Maximum number of meeting recordings that can be processed simultaneously
+      across the organization.
+    scope: organization
+    limits:
+      - plan: Free
+        value: 1
+        unit: concurrent recordings
+      - plan: Pay-As-You-Go
+        value: 5
+        unit: concurrent recordings
+      - plan: Enterprise
+        value: custom
+        unit: concurrent recordings
+  - name: Concurrent HLS Encoding Requests
+    description: Maximum number of HLS (HTTP Live Streaming) encoding jobs that can
+      run simultaneously across the organization.
+    scope: organization
+    limits:
+      - plan: Free
+        value: 1
+        unit: concurrent HLS encoding requests
+      - plan: Pay-As-You-Go
+        value: 5
+        unit: concurrent HLS encoding requests
+      - plan: Enterprise
+        value: custom
+        unit: concurrent HLS encoding requests
+  - name: Concurrent RTMP-Out Streams
+    description: Maximum number of simultaneous RTMP-Out streams (e.g. to YouTube,
+      Twitch, or other external RTMP endpoints) the organization can run at once.
+    scope: organization
+    limits:
+      - plan: Free
+        value: 1
+        unit: concurrent RTMP-Out streams
+      - plan: Pay-As-You-Go
+        value: 5
+        unit: concurrent RTMP-Out streams
+      - plan: Enterprise
+        value: custom
+        unit: concurrent RTMP-Out streams
+notes:
+  - Concurrent usage refers to the number of participants or requests hosted simultaneously
+    across all active sessions combined, not per individual session.
+  - To view current quota limits, navigate to the VideoSDK Dashboard, Profile, and
+    Billing tab.
+  - To increase limits on the Free plan, upgrade to a paid plan via the dashboard.
+  - To increase limits on Pay-As-You-Go, contact support@videosdk.live or use the
+    contact form at https://www.videosdk.live/support.
+  - Enterprise limits are customized; contact VideoSDK directly to establish personalized
+    quotas.

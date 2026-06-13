@@ -1,0 +1,127 @@
+name: VideoSDK FinOps Framework
+description: FinOps Framework 1.0 FOCUS-aligned cost management reference for VideoSDK
+  real-time communication API consumption, covering cost allocation, optimization,
+  and forecasting for participant-minute-based billing.
+version: '1.0'
+provider: VideoSDK
+providerUrl: https://www.videosdk.live
+pricingUrl: https://www.videosdk.live/pricing
+billingDocsUrl: https://docs.videosdk.live/help_docs/pricing-audio-video
+
+costModel:
+  type: usage-based
+  description: VideoSDK charges per participant-minute. A participant-minute is one
+    participant connected to one session for one minute. Costs are determined by the
+    number of participants and the video resolution used.
+  billingUnit: participant-minute
+  billingFormula: "Total Cost = Sum of (N participants × M minutes × rate per resolution)"
+  freeAllowance:
+    amount: 10000
+    unit: participant-minutes
+    period: monthly
+    resetCycle: monthly
+
+costCategories:
+  - name: Audio Communication
+    description: Costs for audio-only participant connections.
+    rate: 0.0006
+    unit: per participant-minute
+    currency: USD
+  - name: HD Video Communication
+    description: Costs for video participant connections at HD (720p) resolution.
+    rate: 0.003
+    unit: per participant-minute
+    currency: USD
+  - name: Full HD Video Communication
+    description: Costs for video participant connections at Full HD (1080p) resolution.
+    rate: 0.007
+    unit: per participant-minute
+    currency: USD
+  - name: 2K / 2K+ Video Communication
+    description: Costs for video participant connections at 2K or higher resolution.
+    rate: 0.007
+    unit: per participant-minute
+    currency: USD
+  - name: Recording Add-On
+    description: Additional cost for meeting or participant recording services.
+    rateMin: 0.004
+    rateMax: 0.030
+    unit: per minute
+    currency: USD
+  - name: Transcription Add-On
+    description: Additional cost for real-time or post-session transcription services.
+    rateMin: 0.004
+    rateMax: 0.030
+    unit: per minute
+    currency: USD
+  - name: AI Summary Add-On
+    description: Additional cost for AI-powered meeting summaries.
+    rateMin: 0.004
+    rateMax: 0.030
+    unit: per minute
+    currency: USD
+
+costOptimization:
+  - name: Downgrade Video Resolution
+    description: Use the lowest acceptable video resolution (Audio or HD) to reduce
+      per-minute costs. Audio-only is 5x cheaper than HD video.
+    potentialSavings: high
+  - name: Minimize Idle Participants
+    description: Ensure participants disconnect promptly when not active. Each connected
+      participant accrues costs regardless of activity.
+    potentialSavings: medium
+  - name: Leverage Free Tier
+    description: Fully utilize the 10,000 free participant-minutes each month before
+      incurring paid usage. Design development and testing workflows to stay within
+      the free tier.
+    potentialSavings: high
+  - name: Use Add-On Credits Strategically
+    description: The 300 free add-on credits per month cover recording, transcription,
+      and AI summaries. Schedule these services during the free credit window to reduce
+      paid usage.
+    potentialSavings: low
+  - name: Volume Discounts
+    description: Contact VideoSDK for volume discounts at 100,000+ monthly participant-minutes
+      to reduce per-minute rates on Pay-As-You-Go.
+    potentialSavings: medium
+    threshold: 100000
+    thresholdUnit: participant-minutes per month
+
+costAllocation:
+  dimensions:
+    - name: Session / Room
+      description: Allocate costs by room ID to track which sessions or products drive
+        the most participant-minute consumption.
+    - name: Video Resolution
+      description: Segment costs by resolution tier (Audio, HD, Full HD, 2K) to understand
+        quality-vs-cost tradeoffs.
+    - name: Feature Type
+      description: Separate core communication costs from add-on costs (recording,
+        transcription, AI summary).
+    - name: Application Environment
+      description: Tag rooms by environment (development, staging, production) to prevent
+        development usage from inflating production cost metrics.
+
+forecasting:
+  method: participant-minute projection
+  inputs:
+    - expectedDailyActiveSessions: number
+    - averageParticipantsPerSession: number
+    - averageSessionDurationMinutes: number
+    - targetVideoResolution: Audio | HD | FullHD | 2K
+    - recordingEnabled: boolean
+  formula: "Monthly Cost = (sessions/day × avg_participants × avg_duration_min × 30 days) × resolution_rate"
+  exampleScenarios:
+    - name: Small Team (10 participants, 60 min/day, HD)
+      monthlyParticipantMinutes: 18000
+      estimatedMonthlyCost: 24.00
+      currency: USD
+      notes: "18,000 min × $0.003/min = $54; minus 10,000 free min = 8,000 billable min × $0.003 = $24"
+    - name: Mid-Scale (100 participants, 30 min/session, 5 sessions/day, HD)
+      monthlyParticipantMinutes: 450000
+      estimatedMonthlyCost: 1320.00
+      currency: USD
+      notes: "450,000 min × $0.003/min = $1,350; minus $30 free allowance value"
+
+dashboardUrl: https://app.videosdk.live
+contactForBilling: support@videosdk.live

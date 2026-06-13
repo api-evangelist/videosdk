@@ -1,0 +1,74 @@
+aid: videosdk
+name: VideoSDK
+description: Real-time voice, video, and AI agent platform for developers. VideoSDK
+  provides REST and WebSocket APIs for building video conferencing, live streaming,
+  interactive broadcast applications, and real-time AI agent integrations with SDKs
+  for JavaScript, React, Flutter, React Native, Android, and iOS.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+url: https://raw.githubusercontent.com/api-evangelist/videosdk/refs/heads/main/apis.yml
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+tags:
+  - Video
+  - Audio
+  - WebRTC
+  - Real-Time Communication
+  - Live Streaming
+  - HLS
+  - RTMP
+  - AI Agents
+  - Video Conferencing
+  - WebSocket
+apis:
+  - aid: videosdk:realtime-communication-api
+    name: VideoSDK Real-Time Communication API
+    description: REST API for managing rooms, sessions, recordings, RTMP live streams,
+      and HLS streaming for real-time audio and video communication applications.
+    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    humanURL: https://docs.videosdk.live/api-reference/realtime-communication/intro
+    baseURL: https://api.videosdk.live
+    tags:
+      - Rooms
+      - Sessions
+      - Recordings
+      - Live Streaming
+      - HLS
+      - RTMP
+      - WebRTC
+    properties:
+      - type: Documentation
+        url: https://docs.videosdk.live/api-reference/realtime-communication/intro
+      - type: Authentication
+        url: https://docs.videosdk.live/api-reference/realtime-communication/intro
+      - type: QuotaLimits
+        url: https://docs.videosdk.live/tutorials/quota-limit-and-plan
+    contact:
+      - FN: VideoSDK Support
+        email: support@videosdk.live
+        url: https://www.videosdk.live/support
+common:
+  - type: Website
+    url: https://www.videosdk.live
+  - type: Documentation
+    url: https://docs.videosdk.live
+  - type: GitHubOrg
+    url: https://github.com/videosdk-live
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/video-sdk
+  - type: X
+    url: https://x.com/video_sdk
+  - type: Blog
+    url: https://www.videosdk.live/blog
+  - type: Pricing
+    url: https://www.videosdk.live/pricing
+  - type: Plans
+    url: plans/videosdk-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/videosdk-rate-limits.yml
+  - type: FinOps
+    url: finops/videosdk-finops.yml
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
