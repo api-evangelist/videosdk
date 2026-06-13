@@ -44,6 +44,8 @@ apis:
         url: https://docs.videosdk.live/api-reference/realtime-communication/intro
       - type: QuotaLimits
         url: https://docs.videosdk.live/tutorials/quota-limit-and-plan
+      - type: OpenAPI
+        url: openapi/videosdk-realtime-communication-api-openapi.yml
     contact:
       - FN: VideoSDK Support
         email: support@videosdk.live

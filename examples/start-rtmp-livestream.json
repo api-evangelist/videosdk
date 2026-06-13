@@ -1,0 +1,36 @@
+{
+  "summary": "Start an RTMP live stream to YouTube and Twitch",
+  "description": "Starts an RTMP live stream from a meeting room to two simultaneous platforms.",
+  "request": {
+    "method": "POST",
+    "url": "https://api.videosdk.live/v2/livestreams/start",
+    "headers": {
+      "Authorization": "<JWT_TOKEN>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "roomId": "abc-xyzw-lmno",
+      "outputs": [
+        {
+          "url": "rtmp://a.rtmp.youtube.com/live2",
+          "streamKey": "xxxx-xxxx-xxxx-xxxx"
+        },
+        {
+          "url": "rtmp://live.twitch.tv/app",
+          "streamKey": "live_1234567890_abcdefghijklmnop"
+        }
+      ],
+      "config": {
+        "layout": {
+          "type": "SPOTLIGHT",
+          "priority": "SPEAKER"
+        },
+        "theme": "DARK"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": "Livestream started successfully"
+  }
+}

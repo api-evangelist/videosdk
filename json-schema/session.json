@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.videosdk.live/v2/schemas/session",
+  "title": "Session",
+  "description": "A VideoSDK meeting session (an active instance of a room).",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Internal session document ID."
+    },
+    "roomId": {
+      "type": "string",
+      "description": "The room this session belongs to."
+    },
+    "start": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Session start timestamp."
+    },
+    "end": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Session end timestamp."
+    },
+    "status": {
+      "type": "string",
+      "description": "Current session status."
+    },
+    "participants": {
+      "type": "array",
+      "description": "Participants who joined this session.",
+      "items": {
+        "$ref": "participant.json"
+      }
+    },
+    "links": {
+      "type": "object",
+      "properties": {
+        "get_room": { "type": "string", "format": "uri" },
+        "get_session": { "type": "string", "format": "uri" }
+      }
+    }
+  },
+  "required": ["id", "roomId"]
+}

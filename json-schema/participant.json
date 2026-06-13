@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.videosdk.live/v2/schemas/participant",
+  "title": "Participant",
+  "description": "A participant in a VideoSDK session.",
+  "type": "object",
+  "properties": {
+    "participantId": {
+      "type": "string",
+      "description": "Unique participant identifier."
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the participant."
+    },
+    "timelog": {
+      "type": "array",
+      "description": "Time intervals the participant was in the session.",
+      "items": {
+        "type": "object",
+        "properties": {
+          "start": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "end": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      }
+    }
+  },
+  "required": ["participantId"]
+}

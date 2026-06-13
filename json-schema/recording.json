@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.videosdk.live/v2/schemas/recording",
+  "title": "Recording",
+  "description": "A VideoSDK meeting or participant recording.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Recording document ID."
+    },
+    "roomId": {
+      "type": "string",
+      "description": "The room the recording belongs to."
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "The session the recording belongs to."
+    },
+    "start": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Recording start timestamp."
+    },
+    "end": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Recording end timestamp."
+    },
+    "file": {
+      "type": "object",
+      "properties": {
+        "fileUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "URL to the recorded media file."
+        },
+        "size": {
+          "type": "integer",
+          "description": "File size in bytes."
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["completed", "failed", "processing"],
+      "description": "Current processing status."
+    },
+    "links": {
+      "type": "object",
+      "properties": {
+        "get_room": { "type": "string", "format": "uri" },
+        "get_session": { "type": "string", "format": "uri" }
+      }
+    }
+  },
+  "required": ["id", "roomId"]
+}

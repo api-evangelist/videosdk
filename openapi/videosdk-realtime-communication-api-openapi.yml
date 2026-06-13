@@ -1,0 +1,1383 @@
+openapi: 3.0.3
+info:
+  title: VideoSDK Real-Time Communication API
+  description: >
+    REST API for managing rooms, sessions, recordings, RTMP live streams,
+    and HLS streaming for real-time audio and video communication applications.
+    Requires a JWT token signed with your VideoSDK API key and secret, passed
+    in the Authorization header (without a Bearer prefix).
+  version: '2.0'
+  contact:
+    name: VideoSDK Support
+    email: support@videosdk.live
+    url: https://www.videosdk.live/support
+  termsOfService: https://www.videosdk.live/terms
+  license:
+    name: Proprietary
+    url: https://www.videosdk.live/terms
+externalDocs:
+  description: VideoSDK API Reference
+  url: https://docs.videosdk.live/api-reference/realtime-communication/intro
+
+servers:
+  - url: https://api.videosdk.live/v2
+    description: VideoSDK v2 API
+
+security:
+  - JWTAuth: []
+
+components:
+  securitySchemes:
+    JWTAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: >
+        JWT token generated using your VideoSDK API key and secret (HS256).
+        Pass the token directly without a "Bearer" prefix.
+
+  schemas:
+    Room:
+      type: object
+      properties:
+        roomId:
+          type: string
+          description: Unique meeting identifier.
+          example: abc-xyzw-lmno
+        customRoomId:
+          type: string
+          description: Custom room identifier if provided.
+          example: final-testing
+        userId:
+          type: string
+          description: Creator's user ID.
+          example: 5f7edbb14c938bcd42944527
+        disabled:
+          type: boolean
+          description: Whether the room is disabled.
+          example: false
+        createdAt:
+          type: string
+          format: date-time
+          description: ISO timestamp of creation.
+        updatedAt:
+          type: string
+          format: date-time
+          description: ISO timestamp of last update.
+        id:
+          type: string
+          description: Room document ID.
+        links:
+          type: object
+          properties:
+            get_room:
+              type: string
+              format: uri
+            get_session:
+              type: string
+              format: uri
+
+    WebhookConfig:
+      type: object
+      properties:
+        endPoint:
+          type: string
+          format: uri
+          description: Webhook URL endpoint.
+        events:
+          type: array
+          items:
+            type: string
+          description: Array of event names or regex patterns to subscribe to.
+
+    AutoCloseConfig:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [session-ends, session-end-and-deactivate]
+          description: When to auto-close the room.
+        duration:
+          type: integer
+          description: Duration in minutes before auto-close (default 480).
+          default: 480
+
+    LayoutConfig:
+      type: object
+      properties:
+        type:
+          type: string
+          enum: [GRID, SPOTLIGHT, SIDEBAR]
+          description: Layout type.
+        priority:
+          type: string
+          enum: [SPEAKER, PIN]
+          description: Layout priority.
+        gridSize:
+          type: integer
+          description: Number of participants in grid (max 25).
+          maximum: 25
+
+    RecordingConfig:
+      type: object
+      properties:
+        layout:
+          $ref: '#/components/schemas/LayoutConfig'
+        theme:
+          type: string
+          enum: [DARK, LIGHT, DEFAULT]
+        mode:
+          type: string
+          enum: [video-and-audio, audio]
+        quality:
+          type: string
+          enum: [low, med, high]
+          description: low=SD, med=HD, high=Full HD
+        orientation:
+          type: string
+          enum: [portrait, landscape]
+
+    StreamingConfig:
+      type: object
+      properties:
+        layout:
+          $ref: '#/components/schemas/LayoutConfig'
+        theme:
+          type: string
+          enum: [DARK, LIGHT, DEFAULT]
+        mode:
+          type: string
+          enum: [video-and-audio, audio]
+        quality:
+          type: string
+          enum: [low, med, high]
+        orientation:
+          type: string
+          enum: [portrait, landscape]
+        recording:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+
+    TranscriptionConfig:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: Enable transcription.
+        summary:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+            prompt:
+              type: string
+              description: Custom prompt for AI summary generation.
+
+    Participant:
+      type: object
+      properties:
+        participantId:
+          type: string
+        name:
+          type: string
+        timelog:
+          type: array
+          items:
+            type: object
+            properties:
+              start:
+                type: string
+                format: date-time
+              end:
+                type: string
+                format: date-time
+
+    Session:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Session document ID.
+        roomId:
+          type: string
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+        participants:
+          type: array
+          items:
+            $ref: '#/components/schemas/Participant'
+        status:
+          type: string
+        links:
+          type: object
+          properties:
+            get_room:
+              type: string
+              format: uri
+            get_session:
+              type: string
+              format: uri
+
+    PageInfo:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+        perPage:
+          type: integer
+        lastPage:
+          type: integer
+        total:
+          type: integer
+
+    SessionsResponse:
+      type: object
+      properties:
+        pageInfo:
+          $ref: '#/components/schemas/PageInfo'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Session'
+
+    Recording:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Recording document ID.
+        roomId:
+          type: string
+        sessionId:
+          type: string
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+        file:
+          type: object
+          properties:
+            fileUrl:
+              type: string
+              format: uri
+            size:
+              type: integer
+        status:
+          type: string
+          enum: [completed, failed, processing]
+        links:
+          type: object
+          properties:
+            get_room:
+              type: string
+              format: uri
+            get_session:
+              type: string
+              format: uri
+
+    HlsStream:
+      type: object
+      properties:
+        id:
+          type: string
+          description: HLS stream identifier.
+        sessionId:
+          type: string
+        roomId:
+          type: string
+        start:
+          type: string
+          format: date-time
+        playbackHlsUrl:
+          type: string
+          format: uri
+          description: Live HLS URL with playback support.
+        livestreamUrl:
+          type: string
+          format: uri
+          description: Live HLS URL without playback support.
+        downstreamUrl:
+          type: string
+          format: uri
+          description: Deprecated playback URL.
+        links:
+          type: object
+          properties:
+            get_room:
+              type: string
+              format: uri
+            get_session:
+              type: string
+              format: uri
+
+    RtmpOutput:
+      type: object
+      required: [streamKey, url]
+      properties:
+        streamKey:
+          type: string
+          description: Stream key for the platform.
+        url:
+          type: string
+          format: uri
+          description: RTMP ingest URL for the platform.
+
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
+
+paths:
+
+  # ── Rooms ──────────────────────────────────────────────────────────────────
+
+  /rooms:
+    post:
+      operationId: createRoom
+      summary: Create a Room
+      description: Creates a new meeting room. Optionally accepts a custom room ID, webhook configuration, and auto-close settings.
+      tags: [Rooms]
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customRoomId:
+                  type: string
+                  description: Custom identifier for the room.
+                webhook:
+                  $ref: '#/components/schemas/WebhookConfig'
+                autoCloseConfig:
+                  $ref: '#/components/schemas/AutoCloseConfig'
+            example:
+              customRoomId: aaa-bbb-ccc
+              webhook:
+                endPoint: https://example.com/webhook
+                events: [recording-started, recording-stopped]
+              autoCloseConfig:
+                type: session-end-and-deactivate
+                duration: 60
+      responses:
+        '200':
+          description: Room created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Room'
+              example:
+                roomId: abc-xyzw-lmno
+                customRoomId: final-testing
+                userId: 5f7edbb14c938bcd42944527
+                disabled: false
+                createdAt: '2022-03-25T04:49:11.024Z'
+                updatedAt: '2022-03-25T04:49:11.024Z'
+                id: 624d0e0db6a26a21b7e8ee5e
+                links:
+                  get_room: https://api.videosdk.live/v2/rooms/abc-xyzw-lmno
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized – invalid or missing JWT.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    get:
+      operationId: fetchRooms
+      summary: Fetch Rooms
+      description: Retrieve a paginated list of all rooms.
+      tags: [Rooms]
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: perPage
+          in: query
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: List of rooms.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pageInfo:
+                    $ref: '#/components/schemas/PageInfo'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Room'
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /rooms/{roomId}:
+    get:
+      operationId: fetchRoom
+      summary: Fetch a Room
+      description: Retrieve details of a specific room by its ID.
+      tags: [Rooms]
+      parameters:
+        - name: roomId
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The unique room identifier.
+      responses:
+        '200':
+          description: Room details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Room'
+        '404':
+          description: Room not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /rooms/validate/{roomId}:
+    post:
+      operationId: validateRoom
+      summary: Validate a Room
+      description: Validate that a room exists and is active.
+      tags: [Rooms]
+      parameters:
+        - name: roomId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Room is valid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Room'
+        '404':
+          description: Room not found or deactivated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # ── Sessions ───────────────────────────────────────────────────────────────
+
+  /sessions:
+    get:
+      operationId: fetchSessions
+      summary: Fetch Sessions
+      description: Retrieve a paginated list of sessions for a given room.
+      tags: [Sessions]
+      parameters:
+        - name: roomId
+          in: query
+          required: true
+          schema:
+            type: string
+          description: The ID of the Room.
+        - name: customRoomId
+          in: query
+          schema:
+            type: string
+          description: Custom room ID specified during creation.
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: perPage
+          in: query
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: Paginated list of sessions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SessionsResponse'
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /sessions/{sessionId}:
+    get:
+      operationId: fetchSession
+      summary: Fetch a Session
+      description: Retrieve details of a specific session by its ID.
+      tags: [Sessions]
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Session details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Session'
+        '404':
+          description: Session not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /sessions/{sessionId}/participants:
+    get:
+      operationId: fetchParticipants
+      summary: Fetch Participants
+      description: Retrieve all participants in a session.
+      tags: [Sessions]
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of participants.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Participant'
+        '404':
+          description: Session not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  /sessions/{sessionId}/participants/active:
+    get:
+      operationId: fetchActiveParticipants
+      summary: Fetch Active Participants
+      description: Retrieve participants currently active in a session.
+      tags: [Sessions]
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of active participants.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Participant'
+
+  /sessions/{sessionId}/stats:
+    get:
+      operationId: fetchSessionStats
+      summary: Fetch Session Quality Stats
+      description: Retrieve quality statistics for a session.
+      tags: [Sessions]
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Session quality statistics.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  sessionId:
+                    type: string
+                  stats:
+                    type: object
+                    additionalProperties: true
+
+  /sessions/{sessionId}/participant/{participantId}/stats:
+    get:
+      operationId: fetchParticipantStats
+      summary: Fetch Peer Quality Stats
+      description: Retrieve quality statistics for a specific participant in a session.
+      tags: [Sessions]
+      parameters:
+        - name: sessionId
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: participantId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Participant quality statistics.
+          content:
+            application/json:
+              schema:
+                type: object
+                additionalProperties: true
+
+  # ── Recordings ─────────────────────────────────────────────────────────────
+
+  /recordings/start:
+    post:
+      operationId: startRecording
+      summary: Start Meeting Recording
+      description: Start recording an active meeting session.
+      tags: [Recordings]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [roomId]
+              properties:
+                roomId:
+                  type: string
+                  description: The ID of the Room to record.
+                templateUrl:
+                  type: string
+                  format: uri
+                  description: Custom layout template URL.
+                transcription:
+                  $ref: '#/components/schemas/TranscriptionConfig'
+                config:
+                  $ref: '#/components/schemas/RecordingConfig'
+                webhookUrl:
+                  type: string
+                  format: uri
+                  description: Webhook URL for recording status notifications.
+                awsDirPath:
+                  type: string
+                  description: AWS S3 bucket path for storage.
+                preSignedUrl:
+                  type: string
+                  format: uri
+                  description: Presigned URL for cloud storage upload.
+            example:
+              roomId: abc-xyzw-lmno
+              config:
+                layout:
+                  type: GRID
+                  priority: SPEAKER
+                  gridSize: 4
+                theme: DARK
+                quality: high
+                orientation: landscape
+      responses:
+        '200':
+          description: Recording started successfully.
+          content:
+            application/json:
+              schema:
+                type: string
+              example: Recording started successfully
+
+  /recordings/stop:
+    post:
+      operationId: stopRecording
+      summary: Stop Meeting Recording
+      description: Stop an active meeting recording.
+      tags: [Recordings]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [roomId]
+              properties:
+                roomId:
+                  type: string
+      responses:
+        '200':
+          description: Recording stopped successfully.
+          content:
+            application/json:
+              schema:
+                type: string
+              example: Recording stopped successfully
+
+  /recordings:
+    get:
+      operationId: fetchRecordings
+      summary: Fetch Recordings
+      description: Retrieve a paginated list of meeting recordings.
+      tags: [Recordings]
+      parameters:
+        - name: roomId
+          in: query
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: perPage
+          in: query
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: List of recordings.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pageInfo:
+                    $ref: '#/components/schemas/PageInfo'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Recording'
+
+  /recordings/{recordingId}:
+    get:
+      operationId: fetchRecording
+      summary: Fetch a Recording
+      description: Retrieve a specific recording by its ID.
+      tags: [Recordings]
+      parameters:
+        - name: recordingId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Recording details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recording'
+        '404':
+          description: Recording not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    delete:
+      operationId: deleteRecording
+      summary: Delete a Recording
+      description: Delete a specific recording.
+      tags: [Recordings]
+      parameters:
+        - name: recordingId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Recording deleted successfully.
+        '404':
+          description: Recording not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+  # ── Participant Recordings ─────────────────────────────────────────────────
+
+  /recordings/participant/start:
+    post:
+      operationId: startParticipantRecording
+      summary: Start Participant Recording
+      description: Start recording for a specific participant.
+      tags: [Participant Recordings]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [roomId]
+              properties:
+                roomId:
+                  type: string
+                participantId:
+                  type: string
+                config:
+                  $ref: '#/components/schemas/RecordingConfig'
+      responses:
+        '200':
+          description: Participant recording started.
+
+  /recordings/participant/stop:
+    post:
+      operationId: stopParticipantRecording
+      summary: Stop Participant Recording
+      description: Stop recording for a specific participant.
+      tags: [Participant Recordings]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [roomId]
+              properties:
+                roomId:
+                  type: string
+                participantId:
+                  type: string
+      responses:
+        '200':
+          description: Participant recording stopped.
+
+  /recordings/participant:
+    get:
+      operationId: fetchParticipantRecordings
+      summary: Fetch All Participant Recordings
+      description: Retrieve all participant recordings.
+      tags: [Participant Recordings]
+      parameters:
+        - name: roomId
+          in: query
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: perPage
+          in: query
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: List of participant recordings.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pageInfo:
+                    $ref: '#/components/schemas/PageInfo'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Recording'
+
+  /recordings/participant/{participantRecordingId}:
+    get:
+      operationId: fetchParticipantRecording
+      summary: Fetch Single Participant Recording
+      description: Retrieve a specific participant recording by ID.
+      tags: [Participant Recordings]
+      parameters:
+        - name: participantRecordingId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Participant recording details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recording'
+
+    delete:
+      operationId: deleteParticipantRecording
+      summary: Delete Participant Recording
+      description: Delete a specific participant recording.
+      tags: [Participant Recordings]
+      parameters:
+        - name: participantRecordingId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Participant recording deleted.
+
+  # ── Track Recordings ───────────────────────────────────────────────────────
+
+  /recordings/participant/track/start:
+    post:
+      operationId: startTrackRecording
+      summary: Start Track Recording
+      description: Start recording a specific media track for a participant.
+      tags: [Track Recordings]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [roomId]
+              properties:
+                roomId:
+                  type: string
+                participantId:
+                  type: string
+                trackId:
+                  type: string
+      responses:
+        '200':
+          description: Track recording started.
+
+  /recordings/participant/track/stop:
+    post:
+      operationId: stopTrackRecording
+      summary: Stop Track Recording
+      description: Stop recording a specific media track.
+      tags: [Track Recordings]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [roomId]
+              properties:
+                roomId:
+                  type: string
+                participantId:
+                  type: string
+                trackId:
+                  type: string
+      responses:
+        '200':
+          description: Track recording stopped.
+
+  /recordings/participant/track:
+    get:
+      operationId: fetchTrackRecordings
+      summary: Fetch All Track Recordings
+      description: Retrieve all track recordings.
+      tags: [Track Recordings]
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: perPage
+          in: query
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: List of track recordings.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pageInfo:
+                    $ref: '#/components/schemas/PageInfo'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Recording'
+
+  /recordings/participant/track/{trackRecordingId}:
+    get:
+      operationId: fetchTrackRecording
+      summary: Fetch Single Track Recording
+      description: Retrieve a specific track recording by ID.
+      tags: [Track Recordings]
+      parameters:
+        - name: trackRecordingId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Track recording details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recording'
+
+    delete:
+      operationId: deleteTrackRecording
+      summary: Delete Track Recording
+      description: Delete a specific track recording.
+      tags: [Track Recordings]
+      parameters:
+        - name: trackRecordingId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Track recording deleted.
+
+  # ── Merge Recordings ───────────────────────────────────────────────────────
+
+  /recordings/participant/merge:
+    post:
+      operationId: startCompositeMerge
+      summary: Start Composite Merge
+      description: Merge multiple participant recordings into a single composite recording.
+      tags: [Track Recordings]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                recordingIds:
+                  type: array
+                  items:
+                    type: string
+                  description: IDs of participant recordings to merge.
+      responses:
+        '200':
+          description: Merge job started.
+
+    get:
+      operationId: fetchMergeRecordings
+      summary: Fetch All Merge Recordings
+      description: Retrieve all composite merge recording jobs.
+      tags: [Track Recordings]
+      responses:
+        '200':
+          description: List of merge jobs.
+
+  /recordings/participant/merge/{mergeId}:
+    get:
+      operationId: fetchMergeRecording
+      summary: Fetch a Merge Recording
+      description: Retrieve details of a specific composite merge job.
+      tags: [Track Recordings]
+      parameters:
+        - name: mergeId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Merge recording details.
+
+  # ── RTMP Live Streaming ────────────────────────────────────────────────────
+
+  /livestreams/start:
+    post:
+      operationId: startLivestream
+      summary: Start RTMP Live Stream
+      description: Start an RTMP live stream from a meeting session to one or more external platforms.
+      tags: [RTMP Streaming]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [roomId, outputs]
+              properties:
+                roomId:
+                  type: string
+                  description: The ID of the Room.
+                outputs:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/RtmpOutput'
+                  description: List of RTMP platform stream destinations.
+                templateUrl:
+                  type: string
+                  format: uri
+                  description: Custom layout template URL.
+                transcription:
+                  $ref: '#/components/schemas/TranscriptionConfig'
+                config:
+                  type: object
+                  properties:
+                    layout:
+                      $ref: '#/components/schemas/LayoutConfig'
+                    theme:
+                      type: string
+                      enum: [DARK, LIGHT, DEFAULT]
+                    recording:
+                      type: object
+                      properties:
+                        enabled:
+                          type: boolean
+            example:
+              roomId: abc-xyzw-lmno
+              outputs:
+                - url: rtmp://live.twitch.tv/app
+                  streamKey: live_1234567890_abcdefgh
+      responses:
+        '200':
+          description: Livestream started successfully.
+          content:
+            application/json:
+              schema:
+                type: string
+              example: Livestream started successfully
+
+  /livestreams/stop:
+    post:
+      operationId: stopLivestream
+      summary: Stop RTMP Live Stream
+      description: Stop an active RTMP live stream.
+      tags: [RTMP Streaming]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [roomId]
+              properties:
+                roomId:
+                  type: string
+      responses:
+        '200':
+          description: Livestream stopped successfully.
+
+  # ── HLS Streaming ──────────────────────────────────────────────────────────
+
+  /hls/start:
+    post:
+      operationId: startHlsStream
+      summary: Start HLS Stream
+      description: Start an HLS live stream for a meeting session.
+      tags: [HLS Streaming]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [roomId]
+              properties:
+                roomId:
+                  type: string
+                  description: The ID of the Room.
+                templateUrl:
+                  type: string
+                  format: uri
+                  description: Custom layout template URL.
+                transcription:
+                  $ref: '#/components/schemas/TranscriptionConfig'
+                summary:
+                  type: object
+                  properties:
+                    enabled:
+                      type: boolean
+                    prompt:
+                      type: string
+                config:
+                  $ref: '#/components/schemas/StreamingConfig'
+            example:
+              roomId: abc-xyzw-lmno
+              config:
+                layout:
+                  type: GRID
+                orientation: landscape
+      responses:
+        '200':
+          description: HLS stream started.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HlsStream'
+              example:
+                sessionId: abcde94c96e17e03fb0abcde4
+                start: '2022-04-19T09:18:13.432Z'
+                roomId: abcd-efgh-ijkl
+                playbackHlsUrl: https://cdn.videosdk.live/meetings-hls/abcdefgh-ijkl-mnop/index.m3u8
+                livestreamUrl: https://cdn.videosdk.live/meetings-hls/abcdefgh-ijkl-mnop/live.m3u8
+                id: abcdef9879288c1f48339f64
+
+  /hls/stop:
+    post:
+      operationId: stopHlsStream
+      summary: Stop HLS Stream
+      description: Stop an active HLS stream.
+      tags: [HLS Streaming]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [roomId]
+              properties:
+                roomId:
+                  type: string
+      responses:
+        '200':
+          description: HLS stream stopped.
+
+  /hls:
+    get:
+      operationId: fetchHlsStreams
+      summary: Fetch All HLS Streams
+      description: Retrieve all HLS streams.
+      tags: [HLS Streaming]
+      parameters:
+        - name: roomId
+          in: query
+          schema:
+            type: string
+        - name: page
+          in: query
+          schema:
+            type: integer
+            default: 1
+        - name: perPage
+          in: query
+          schema:
+            type: integer
+            default: 20
+      responses:
+        '200':
+          description: List of HLS streams.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pageInfo:
+                    $ref: '#/components/schemas/PageInfo'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/HlsStream'
+
+  /hls/{hlsId}:
+    get:
+      operationId: fetchHlsStream
+      summary: Fetch Single HLS Stream
+      description: Retrieve details of a specific HLS stream.
+      tags: [HLS Streaming]
+      parameters:
+        - name: hlsId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: HLS stream details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HlsStream'
+        '404':
+          description: HLS stream not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+
+    delete:
+      operationId: deleteHlsStream
+      summary: Delete HLS Stream
+      description: Delete a specific HLS stream record.
+      tags: [HLS Streaming]
+      parameters:
+        - name: hlsId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: HLS stream deleted.
+
+  /hls/capture:
+    post:
+      operationId: fetchHlsThumbnail
+      summary: Fetch HLS Thumbnail
+      description: Capture a thumbnail snapshot from an active HLS stream.
+      tags: [HLS Streaming]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [roomId]
+              properties:
+                roomId:
+                  type: string
+      responses:
+        '200':
+          description: Thumbnail capture initiated.
+
+tags:
+  - name: Rooms
+    description: Manage meeting rooms.
+  - name: Sessions
+    description: Manage and query meeting sessions and participants.
+  - name: Recordings
+    description: Start, stop, and manage meeting recordings.
+  - name: Participant Recordings
+    description: Per-participant recording management.
+  - name: Track Recordings
+    description: Per-track and composite recording management.
+  - name: RTMP Streaming
+    description: RTMP live streaming to external platforms.
+  - name: HLS Streaming
+    description: HLS live streaming and playback management.

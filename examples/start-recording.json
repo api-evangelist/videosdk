@@ -1,0 +1,38 @@
+{
+  "summary": "Start a meeting recording in HD landscape",
+  "description": "Starts a full meeting recording in GRID layout, HD quality, landscape orientation with dark theme.",
+  "request": {
+    "method": "POST",
+    "url": "https://api.videosdk.live/v2/recordings/start",
+    "headers": {
+      "Authorization": "<JWT_TOKEN>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "roomId": "abc-xyzw-lmno",
+      "config": {
+        "layout": {
+          "type": "GRID",
+          "priority": "SPEAKER",
+          "gridSize": 4
+        },
+        "theme": "DARK",
+        "mode": "video-and-audio",
+        "quality": "med",
+        "orientation": "landscape"
+      },
+      "transcription": {
+        "enabled": true,
+        "summary": {
+          "enabled": true,
+          "prompt": "Write a concise summary of the meeting covering key decisions and action items."
+        }
+      },
+      "webhookUrl": "https://example.com/webhook/recording-status"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": "Recording started successfully"
+  }
+}

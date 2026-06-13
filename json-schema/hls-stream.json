@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://api.videosdk.live/v2/schemas/hls-stream",
+  "title": "HlsStream",
+  "description": "An HLS live stream associated with a VideoSDK session.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "HLS stream document ID."
+    },
+    "sessionId": {
+      "type": "string",
+      "description": "The session this HLS stream is tied to."
+    },
+    "roomId": {
+      "type": "string",
+      "description": "The room this HLS stream is tied to."
+    },
+    "start": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Stream start timestamp."
+    },
+    "playbackHlsUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "HLS URL with DVR/playback support (m3u8)."
+    },
+    "livestreamUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "HLS URL for live-only viewing (m3u8)."
+    },
+    "downstreamUrl": {
+      "type": "string",
+      "format": "uri",
+      "description": "Deprecated downstream URL."
+    },
+    "links": {
+      "type": "object",
+      "properties": {
+        "get_room": { "type": "string", "format": "uri" },
+        "get_session": { "type": "string", "format": "uri" }
+      }
+    }
+  },
+  "required": ["id", "roomId"]
+}

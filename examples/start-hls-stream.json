@@ -1,0 +1,44 @@
+{
+  "summary": "Start an HLS live stream",
+  "description": "Starts an HLS live stream for a meeting in GRID layout, landscape orientation.",
+  "request": {
+    "method": "POST",
+    "url": "https://api.videosdk.live/v2/hls/start",
+    "headers": {
+      "Authorization": "<JWT_TOKEN>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "roomId": "abc-xyzw-lmno",
+      "config": {
+        "layout": {
+          "type": "GRID",
+          "priority": "SPEAKER",
+          "gridSize": 9
+        },
+        "theme": "DEFAULT",
+        "mode": "video-and-audio",
+        "quality": "high",
+        "orientation": "landscape",
+        "recording": {
+          "enabled": true
+        }
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "sessionId": "abcde94c96e17e03fb0abcde4",
+      "start": "2022-04-19T09:18:13.432Z",
+      "roomId": "abc-xyzw-lmno",
+      "playbackHlsUrl": "https://cdn.videosdk.live/meetings-hls/abcdefgh-ijkl-mnop/index.m3u8",
+      "livestreamUrl": "https://cdn.videosdk.live/meetings-hls/abcdefgh-ijkl-mnop/live.m3u8",
+      "id": "abcdef9879288c1f48339f64",
+      "links": {
+        "get_room": "https://api.videosdk.live/v2/rooms/abc-xyzw-lmno",
+        "get_session": "https://api.videosdk.live/v2/sessions/abcde94c96e17e03fb0abcde4"
+      }
+    }
+  }
+}

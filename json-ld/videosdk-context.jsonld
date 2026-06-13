@@ -1,0 +1,211 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "schema": "https://schema.org/",
+    "videosdk": "https://api.videosdk.live/v2/vocab#",
+
+    "Room": "videosdk:Room",
+    "Session": "videosdk:Session",
+    "Participant": "videosdk:Participant",
+    "Recording": "videosdk:Recording",
+    "HlsStream": "videosdk:HlsStream",
+    "RtmpStream": "videosdk:RtmpStream",
+    "Transcription": "videosdk:Transcription",
+
+    "roomId": {
+      "@id": "videosdk:roomId",
+      "@type": "xsd:string"
+    },
+    "customRoomId": {
+      "@id": "videosdk:customRoomId",
+      "@type": "xsd:string"
+    },
+    "sessionId": {
+      "@id": "videosdk:sessionId",
+      "@type": "xsd:string"
+    },
+    "participantId": {
+      "@id": "videosdk:participantId",
+      "@type": "xsd:string"
+    },
+    "recordingId": {
+      "@id": "videosdk:recordingId",
+      "@type": "xsd:string"
+    },
+    "hlsId": {
+      "@id": "videosdk:hlsId",
+      "@type": "xsd:string"
+    },
+    "disabled": {
+      "@id": "videosdk:disabled",
+      "@type": "xsd:boolean"
+    },
+    "status": {
+      "@id": "videosdk:status",
+      "@type": "xsd:string"
+    },
+    "start": {
+      "@id": "videosdk:start",
+      "@type": "xsd:dateTime"
+    },
+    "end": {
+      "@id": "videosdk:end",
+      "@type": "xsd:dateTime"
+    },
+    "createdAt": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "updatedAt": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "participants": {
+      "@id": "videosdk:hasParticipant",
+      "@type": "@id",
+      "@container": "@set"
+    },
+    "timelog": {
+      "@id": "videosdk:timelog",
+      "@container": "@set"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "playbackHlsUrl": {
+      "@id": "videosdk:playbackHlsUrl",
+      "@type": "@id"
+    },
+    "livestreamUrl": {
+      "@id": "videosdk:livestreamUrl",
+      "@type": "@id"
+    },
+    "downstreamUrl": {
+      "@id": "videosdk:downstreamUrl",
+      "@type": "@id"
+    },
+    "streamKey": {
+      "@id": "videosdk:streamKey",
+      "@type": "xsd:string"
+    },
+    "outputs": {
+      "@id": "videosdk:hasOutput",
+      "@container": "@set"
+    },
+    "templateUrl": {
+      "@id": "videosdk:templateUrl",
+      "@type": "@id"
+    },
+    "webhookUrl": {
+      "@id": "videosdk:webhookUrl",
+      "@type": "@id"
+    },
+    "endPoint": {
+      "@id": "videosdk:endPoint",
+      "@type": "@id"
+    },
+    "events": {
+      "@id": "videosdk:events",
+      "@container": "@set"
+    },
+    "quality": {
+      "@id": "videosdk:quality",
+      "@type": "xsd:string"
+    },
+    "orientation": {
+      "@id": "videosdk:orientation",
+      "@type": "xsd:string"
+    },
+    "theme": {
+      "@id": "videosdk:theme",
+      "@type": "xsd:string"
+    },
+    "mode": {
+      "@id": "videosdk:mode",
+      "@type": "xsd:string"
+    },
+    "layout": {
+      "@id": "videosdk:layout"
+    },
+    "gridSize": {
+      "@id": "videosdk:gridSize",
+      "@type": "xsd:integer"
+    },
+    "priority": {
+      "@id": "videosdk:priority",
+      "@type": "xsd:string"
+    },
+    "config": {
+      "@id": "videosdk:config"
+    },
+    "autoCloseConfig": {
+      "@id": "videosdk:autoCloseConfig"
+    },
+    "duration": {
+      "@id": "videosdk:duration",
+      "@type": "xsd:integer"
+    },
+    "transcription": {
+      "@id": "videosdk:transcription"
+    },
+    "summary": {
+      "@id": "videosdk:summary"
+    },
+    "enabled": {
+      "@id": "videosdk:enabled",
+      "@type": "xsd:boolean"
+    },
+    "prompt": {
+      "@id": "videosdk:prompt",
+      "@type": "xsd:string"
+    },
+    "permissions": {
+      "@id": "videosdk:permissions",
+      "@container": "@set"
+    },
+    "roles": {
+      "@id": "videosdk:roles",
+      "@container": "@set"
+    },
+    "links": {
+      "@id": "videosdk:links"
+    },
+    "userId": {
+      "@id": "videosdk:userId",
+      "@type": "xsd:string"
+    },
+    "fileUrl": {
+      "@id": "videosdk:fileUrl",
+      "@type": "@id"
+    },
+    "size": {
+      "@id": "videosdk:size",
+      "@type": "xsd:integer"
+    },
+    "pageInfo": {
+      "@id": "videosdk:pageInfo"
+    },
+    "currentPage": {
+      "@id": "videosdk:currentPage",
+      "@type": "xsd:integer"
+    },
+    "perPage": {
+      "@id": "videosdk:perPage",
+      "@type": "xsd:integer"
+    },
+    "lastPage": {
+      "@id": "videosdk:lastPage",
+      "@type": "xsd:integer"
+    },
+    "total": {
+      "@id": "videosdk:total",
+      "@type": "xsd:integer"
+    },
+    "data": {
+      "@id": "videosdk:data",
+      "@container": "@set"
+    }
+  }
+}

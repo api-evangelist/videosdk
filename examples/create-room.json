@@ -1,0 +1,39 @@
+{
+  "summary": "Create a room with webhook and auto-close",
+  "description": "Creates a meeting room with a custom ID, webhook for recording events, and auto-close after 60 minutes of inactivity.",
+  "request": {
+    "method": "POST",
+    "url": "https://api.videosdk.live/v2/rooms",
+    "headers": {
+      "Authorization": "<JWT_TOKEN>",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "customRoomId": "aaa-bbb-ccc",
+      "webhook": {
+        "endPoint": "https://example.com/webhook/videosdk",
+        "events": ["recording-started", "recording-stopped", "recording-*"]
+      },
+      "autoCloseConfig": {
+        "type": "session-end-and-deactivate",
+        "duration": 60
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "roomId": "abc-xyzw-lmno",
+      "customRoomId": "aaa-bbb-ccc",
+      "userId": "5f7edbb14c938bcd42944527",
+      "disabled": false,
+      "createdAt": "2022-03-25T04:49:11.024Z",
+      "updatedAt": "2022-03-25T04:49:11.024Z",
+      "id": "624d0e0db6a26a21b7e8ee5e",
+      "links": {
+        "get_room": "https://api.videosdk.live/v2/rooms/abc-xyzw-lmno",
+        "get_session": "https://api.videosdk.live/v2/sessions/?roomId=abc-xyzw-lmno"
+      }
+    }
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "summary": "Fetch sessions for a room",
+  "description": "Retrieve the first page of sessions for a specific room, 20 per page.",
+  "request": {
+    "method": "GET",
+    "url": "https://api.videosdk.live/v2/sessions/?roomId=abc-xyzw-lmno&page=1&perPage=20",
+    "headers": {
+      "Authorization": "<JWT_TOKEN>"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "pageInfo": {
+        "currentPage": 1,
+        "perPage": 20,
+        "lastPage": 1,
+        "total": 3
+      },
+      "data": [
+        {
+          "id": "62e4a2a8f5d3c96e7f0b1234",
+          "roomId": "abc-xyzw-lmno",
+          "start": "2022-07-30T10:00:00.000Z",
+          "end": "2022-07-30T11:00:00.000Z",
+          "status": "completed",
+          "participants": [
+            {
+              "participantId": "alice",
+              "name": "Alice",
+              "timelog": [
+                {
+                  "start": "2022-07-30T10:00:00.000Z",
+                  "end": "2022-07-30T11:00:00.000Z"
+                }
+              ]
+            }
+          ],
+          "links": {
+            "get_room": "https://api.videosdk.live/v2/rooms/abc-xyzw-lmno",
+            "get_session": "https://api.videosdk.live/v2/sessions/62e4a2a8f5d3c96e7f0b1234"
+          }
+        }
+      ]
+    }
+  }
+}

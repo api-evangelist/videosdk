@@ -1,0 +1,166 @@
+vocabulary:
+  name: VideoSDK Domain Vocabulary
+  description: Key terms and concepts used in the VideoSDK Real-Time Communication API.
+  source: https://docs.videosdk.live/api-reference/realtime-communication/intro
+  terms:
+
+    - term: Room
+      definition: >
+        A persistent virtual meeting space identified by a unique roomId. Rooms
+        can host multiple sessions over their lifetime. Rooms can be created with
+        a custom ID, webhook configuration, and auto-close policies.
+      related: [Session, roomId, customRoomId]
+
+    - term: roomId
+      definition: >
+        The unique string identifier assigned to a room at creation
+        (e.g., "abc-xyzw-lmno"). Used to reference the room in all API calls.
+      related: [Room, customRoomId]
+
+    - term: customRoomId
+      definition: >
+        An optional user-defined identifier for a room, provided at creation.
+        Must be unique within the account.
+      related: [Room, roomId]
+
+    - term: Session
+      definition: >
+        An active instance of a room — a time-bounded meeting that begins when
+        the first participant joins and ends when all participants leave or the
+        session is explicitly ended. Each room can have multiple sessions over time.
+      related: [Room, sessionId, Participant]
+
+    - term: sessionId
+      definition: >
+        The unique identifier for a specific session instance within a room.
+      related: [Session]
+
+    - term: Participant
+      definition: >
+        A user who has joined a session. Tracked by participantId and name,
+        with a timelog recording their join and leave times.
+      related: [Session, participantId, timelog]
+
+    - term: participantId
+      definition: >
+        The unique identifier for a participant within a session. Set by the
+        client when generating the JWT token.
+      related: [Participant]
+
+    - term: timelog
+      definition: >
+        An array of start/end time intervals recording when a participant was
+        actively connected during a session.
+      related: [Participant]
+
+    - term: Recording
+      definition: >
+        A stored audio/video capture of a meeting session. VideoSDK supports
+        meeting-level recordings, per-participant recordings, and per-track
+        recordings.
+      related: [Session, Room, recordingId]
+
+    - term: recordingId
+      definition: >
+        The unique identifier for a specific recording artifact.
+      related: [Recording]
+
+    - term: HLS Stream
+      definition: >
+        An HTTP Live Streaming output generated from a VideoSDK session. Provides
+        both a playback URL (with DVR support) and a live-only livestream URL.
+        Encoded as an adaptive bitrate m3u8 stream via VideoSDK's CDN.
+      related: [playbackHlsUrl, livestreamUrl, hlsId]
+
+    - term: playbackHlsUrl
+      definition: >
+        The HLS m3u8 URL for watching a live stream with DVR/playback support
+        (viewers can seek back in time).
+      related: [HLS Stream, livestreamUrl]
+
+    - term: livestreamUrl
+      definition: >
+        The HLS m3u8 URL for real-time viewing without playback/DVR support.
+      related: [HLS Stream, playbackHlsUrl]
+
+    - term: RTMP Stream
+      definition: >
+        A Real-Time Messaging Protocol output that pushes the meeting video to
+        external platforms (YouTube, Twitch, Facebook Live, etc.) using a stream
+        key and ingest URL.
+      related: [streamKey, RTMP output]
+
+    - term: streamKey
+      definition: >
+        The secret key provided by an external streaming platform (YouTube,
+        Twitch, etc.) used to authenticate and route an RTMP stream.
+      related: [RTMP Stream]
+
+    - term: JWT Token
+      definition: >
+        A JSON Web Token used for authenticating VideoSDK API requests. Generated
+        using the account API key and secret with HS256 signing. Passed in the
+        Authorization header without a "Bearer" prefix.
+      related: [apikey, permissions, roles]
+
+    - term: apikey
+      definition: >
+        The public API key from the VideoSDK dashboard, included in JWT payloads
+        for authentication.
+      related: [JWT Token]
+
+    - term: permissions
+      definition: >
+        JWT claim controlling what a participant can do: allow_join (join freely),
+        ask_join (requires host approval), allow_mod (moderator access).
+      related: [JWT Token, roles]
+
+    - term: roles
+      definition: >
+        JWT claim that grants special capabilities: "crawler" for server-side
+        REST API access, "rtc" for client SDK meeting access.
+      related: [JWT Token, permissions]
+
+    - term: WebRTC
+      definition: >
+        Web Real-Time Communication — the browser/native standard underlying
+        VideoSDK's peer-to-peer audio and video transport.
+      related: [Room, Session]
+
+    - term: Layout
+      definition: >
+        The visual arrangement of participant video tiles in recordings and streams.
+        Options are GRID (equal tiles), SPOTLIGHT (one large featured tile), and
+        SIDEBAR (one large + small thumbnails).
+      related: [Recording, HLS Stream, LayoutConfig]
+
+    - term: Transcription
+      definition: >
+        Real-time or post-session speech-to-text conversion of audio from a
+        VideoSDK session. Can be enabled for recordings and HLS streams.
+      related: [Session, Recording, Summary]
+
+    - term: Summary
+      definition: >
+        An AI-generated text summary of a session's transcription content.
+        Triggered after transcription completes; a custom prompt can be provided.
+      related: [Transcription]
+
+    - term: autoCloseConfig
+      definition: >
+        Room-level configuration that automatically ends or deactivates a room
+        after a session ends (or after a configurable idle duration in minutes).
+      related: [Room]
+
+    - term: webhook
+      definition: >
+        An HTTP callback configured on a room to receive real-time event
+        notifications (e.g., recording-started, session-ended). Supports
+        event name patterns and regex filtering.
+      related: [Room, autoCloseConfig]
+
+    - term: PageInfo
+      definition: >
+        Pagination metadata returned by list endpoints, including currentPage,
+        perPage, lastPage, and total count.
+      related: [Session, Recording, HLS Stream]
