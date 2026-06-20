@@ -5,7 +5,7 @@ description: Real-time voice, video, and AI agent platform for developers. Video
   interactive broadcast applications, and real-time AI agent integrations with SDKs
   for JavaScript, React, Flutter, React Native, Android, and iOS.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/videosdk/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -26,7 +26,7 @@ apis:
     name: VideoSDK Real-Time Communication API
     description: REST API for managing rooms, sessions, recordings, RTMP live streams,
       and HLS streaming for real-time audio and video communication applications.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://docs.videosdk.live/api-reference/realtime-communication/intro
     baseURL: https://api.videosdk.live
     tags:
