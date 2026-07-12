@@ -1,0 +1,17 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/videosdk-realtime-communication-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: JWTAuth
+  type: apiKey
+  in: header
+  parameter: Authorization
+  description: JWT token generated using your VideoSDK API key and secret (HS256). Pass the
+    token directly without a "Bearer" prefix.
+  sources:
+  - openapi/videosdk-realtime-communication-api-openapi.yml

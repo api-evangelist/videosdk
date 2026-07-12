@@ -51,6 +51,14 @@ apis:
         email: support@videosdk.live
         url: https://www.videosdk.live/support
 common:
+  - type: TrustCenter
+    url: security/videosdk-trust-center.yml
+  - type: VulnerabilityDisclosure
+    url: security/videosdk-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/videosdk-domain-security.yml
+  - type: Authentication
+    url: authentication/videosdk-authentication.yml
   - type: Website
     url: https://www.videosdk.live
   - type: Documentation
