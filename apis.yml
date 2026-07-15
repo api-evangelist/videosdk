@@ -51,6 +51,8 @@ apis:
         email: support@videosdk.live
         url: https://www.videosdk.live/support
 common:
+  - type: AgenticAccess
+    url: agentic-access/videosdk-agentic-access.yml
   - type: TrustCenter
     url: security/videosdk-trust-center.yml
   - type: VulnerabilityDisclosure
