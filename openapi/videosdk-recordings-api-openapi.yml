@@ -1,0 +1,321 @@
+openapi: 3.0.3
+info:
+  title: VideoSDK Real-Time Communication HLS Streaming Recordings API
+  description: 'REST API for managing rooms, sessions, recordings, RTMP live streams, and HLS streaming for real-time audio and video communication applications. Requires a JWT token signed with your VideoSDK API key and secret, passed in the Authorization header (without a Bearer prefix).
+
+    '
+  version: '2.0'
+  contact:
+    name: VideoSDK Support
+    email: support@videosdk.live
+    url: https://www.videosdk.live/support
+  termsOfService: https://www.videosdk.live/terms
+  license:
+    name: Proprietary
+    url: https://www.videosdk.live/terms
+servers:
+- url: https://api.videosdk.live/v2
+  description: VideoSDK v2 API
+security:
+- JWTAuth: []
+tags:
+- name: Recordings
+  description: Start, stop, and manage meeting recordings.
+paths:
+  /recordings/start:
+    post:
+      operationId: startRecording
+      summary: Start Meeting Recording
+      description: Start recording an active meeting session.
+      tags:
+      - Recordings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - roomId
+              properties:
+                roomId:
+                  type: string
+                  description: The ID of the Room to record.
+                templateUrl:
+                  type: string
+                  format: uri
+                  description: Custom layout template URL.
+                transcription:
+                  $ref: '#/components/schemas/TranscriptionConfig'
+                config:
+                  $ref: '#/components/schemas/RecordingConfig'
+                webhookUrl:
+                  type: string
+                  format: uri
+                  description: Webhook URL for recording status notifications.
+                awsDirPath:
+                  type: string
+                  description: AWS S3 bucket path for storage.
+                preSignedUrl:
+                  type: string
+                  format: uri
+                  description: Presigned URL for cloud storage upload.
+            example:
+              roomId: abc-xyzw-lmno
+              config:
+                layout:
+                  type: GRID
+                  priority: SPEAKER
+                  gridSize: 4
+                theme: DARK
+                quality: high
+                orientation: landscape
+      responses:
+        '200':
+          description: Recording started successfully.
+          content:
+            application/json:
+              schema:
+                type: string
+              example: Recording started successfully
+  /recordings/stop:
+    post:
+      operationId: stopRecording
+      summary: Stop Meeting Recording
+      description: Stop an active meeting recording.
+      tags:
+      - Recordings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - roomId
+              properties:
+                roomId:
+                  type: string
+      responses:
+        '200':
+          description: Recording stopped successfully.
+          content:
+            application/json:
+              schema:
+                type: string
+              example: Recording stopped successfully
+  /recordings:
+    get:
+      operationId: fetchRecordings
+      summary: Fetch Recordings
+      description: Retrieve a paginated list of meeting recordings.
+      tags:
+      - Recordings
+      parameters:
+      - name: roomId
+        in: query
+        schema:
+          type: string
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: perPage
+        in: query
+        schema:
+          type: integer
+          default: 20
+      responses:
+        '200':
+          description: List of recordings.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pageInfo:
+                    $ref: '#/components/schemas/PageInfo'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Recording'
+  /recordings/{recordingId}:
+    get:
+      operationId: fetchRecording
+      summary: Fetch a Recording
+      description: Retrieve a specific recording by its ID.
+      tags:
+      - Recordings
+      parameters:
+      - name: recordingId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Recording details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recording'
+        '404':
+          description: Recording not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      operationId: deleteRecording
+      summary: Delete a Recording
+      description: Delete a specific recording.
+      tags:
+      - Recordings
+      parameters:
+      - name: recordingId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Recording deleted successfully.
+        '404':
+          description: Recording not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    PageInfo:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+        perPage:
+          type: integer
+        lastPage:
+          type: integer
+        total:
+          type: integer
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
+    LayoutConfig:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - GRID
+          - SPOTLIGHT
+          - SIDEBAR
+          description: Layout type.
+        priority:
+          type: string
+          enum:
+          - SPEAKER
+          - PIN
+          description: Layout priority.
+        gridSize:
+          type: integer
+          description: Number of participants in grid (max 25).
+          maximum: 25
+    Recording:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Recording document ID.
+        roomId:
+          type: string
+        sessionId:
+          type: string
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+        file:
+          type: object
+          properties:
+            fileUrl:
+              type: string
+              format: uri
+            size:
+              type: integer
+        status:
+          type: string
+          enum:
+          - completed
+          - failed
+          - processing
+        links:
+          type: object
+          properties:
+            get_room:
+              type: string
+              format: uri
+            get_session:
+              type: string
+              format: uri
+    RecordingConfig:
+      type: object
+      properties:
+        layout:
+          $ref: '#/components/schemas/LayoutConfig'
+        theme:
+          type: string
+          enum:
+          - DARK
+          - LIGHT
+          - DEFAULT
+        mode:
+          type: string
+          enum:
+          - video-and-audio
+          - audio
+        quality:
+          type: string
+          enum:
+          - low
+          - med
+          - high
+          description: low=SD, med=HD, high=Full HD
+        orientation:
+          type: string
+          enum:
+          - portrait
+          - landscape
+    TranscriptionConfig:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: Enable transcription.
+        summary:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+            prompt:
+              type: string
+              description: Custom prompt for AI summary generation.
+  securitySchemes:
+    JWTAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'JWT token generated using your VideoSDK API key and secret (HS256). Pass the token directly without a "Bearer" prefix.
+
+        '
+externalDocs:
+  description: VideoSDK API Reference
+  url: https://docs.videosdk.live/api-reference/realtime-communication/intro

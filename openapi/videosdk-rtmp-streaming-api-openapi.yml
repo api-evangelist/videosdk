@@ -1,0 +1,165 @@
+openapi: 3.0.3
+info:
+  title: VideoSDK Real-Time Communication HLS Streaming RTMP Streaming API
+  description: 'REST API for managing rooms, sessions, recordings, RTMP live streams, and HLS streaming for real-time audio and video communication applications. Requires a JWT token signed with your VideoSDK API key and secret, passed in the Authorization header (without a Bearer prefix).
+
+    '
+  version: '2.0'
+  contact:
+    name: VideoSDK Support
+    email: support@videosdk.live
+    url: https://www.videosdk.live/support
+  termsOfService: https://www.videosdk.live/terms
+  license:
+    name: Proprietary
+    url: https://www.videosdk.live/terms
+servers:
+- url: https://api.videosdk.live/v2
+  description: VideoSDK v2 API
+security:
+- JWTAuth: []
+tags:
+- name: RTMP Streaming
+  description: RTMP live streaming to external platforms.
+paths:
+  /livestreams/start:
+    post:
+      operationId: startLivestream
+      summary: Start RTMP Live Stream
+      description: Start an RTMP live stream from a meeting session to one or more external platforms.
+      tags:
+      - RTMP Streaming
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - roomId
+              - outputs
+              properties:
+                roomId:
+                  type: string
+                  description: The ID of the Room.
+                outputs:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/RtmpOutput'
+                  description: List of RTMP platform stream destinations.
+                templateUrl:
+                  type: string
+                  format: uri
+                  description: Custom layout template URL.
+                transcription:
+                  $ref: '#/components/schemas/TranscriptionConfig'
+                config:
+                  type: object
+                  properties:
+                    layout:
+                      $ref: '#/components/schemas/LayoutConfig'
+                    theme:
+                      type: string
+                      enum:
+                      - DARK
+                      - LIGHT
+                      - DEFAULT
+                    recording:
+                      type: object
+                      properties:
+                        enabled:
+                          type: boolean
+            example:
+              roomId: abc-xyzw-lmno
+              outputs:
+              - url: rtmp://live.twitch.tv/app
+                streamKey: live_1234567890_abcdefgh
+      responses:
+        '200':
+          description: Livestream started successfully.
+          content:
+            application/json:
+              schema:
+                type: string
+              example: Livestream started successfully
+  /livestreams/stop:
+    post:
+      operationId: stopLivestream
+      summary: Stop RTMP Live Stream
+      description: Stop an active RTMP live stream.
+      tags:
+      - RTMP Streaming
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - roomId
+              properties:
+                roomId:
+                  type: string
+      responses:
+        '200':
+          description: Livestream stopped successfully.
+components:
+  schemas:
+    RtmpOutput:
+      type: object
+      required:
+      - streamKey
+      - url
+      properties:
+        streamKey:
+          type: string
+          description: Stream key for the platform.
+        url:
+          type: string
+          format: uri
+          description: RTMP ingest URL for the platform.
+    LayoutConfig:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - GRID
+          - SPOTLIGHT
+          - SIDEBAR
+          description: Layout type.
+        priority:
+          type: string
+          enum:
+          - SPEAKER
+          - PIN
+          description: Layout priority.
+        gridSize:
+          type: integer
+          description: Number of participants in grid (max 25).
+          maximum: 25
+    TranscriptionConfig:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: Enable transcription.
+        summary:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+            prompt:
+              type: string
+              description: Custom prompt for AI summary generation.
+  securitySchemes:
+    JWTAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'JWT token generated using your VideoSDK API key and secret (HS256). Pass the token directly without a "Bearer" prefix.
+
+        '
+externalDocs:
+  description: VideoSDK API Reference
+  url: https://docs.videosdk.live/api-reference/realtime-communication/intro

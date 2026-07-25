@@ -1,0 +1,251 @@
+openapi: 3.0.3
+info:
+  title: VideoSDK Real-Time Communication HLS Streaming Track Recordings API
+  description: 'REST API for managing rooms, sessions, recordings, RTMP live streams, and HLS streaming for real-time audio and video communication applications. Requires a JWT token signed with your VideoSDK API key and secret, passed in the Authorization header (without a Bearer prefix).
+
+    '
+  version: '2.0'
+  contact:
+    name: VideoSDK Support
+    email: support@videosdk.live
+    url: https://www.videosdk.live/support
+  termsOfService: https://www.videosdk.live/terms
+  license:
+    name: Proprietary
+    url: https://www.videosdk.live/terms
+servers:
+- url: https://api.videosdk.live/v2
+  description: VideoSDK v2 API
+security:
+- JWTAuth: []
+tags:
+- name: Track Recordings
+  description: Per-track and composite recording management.
+paths:
+  /recordings/participant/track/start:
+    post:
+      operationId: startTrackRecording
+      summary: Start Track Recording
+      description: Start recording a specific media track for a participant.
+      tags:
+      - Track Recordings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - roomId
+              properties:
+                roomId:
+                  type: string
+                participantId:
+                  type: string
+                trackId:
+                  type: string
+      responses:
+        '200':
+          description: Track recording started.
+  /recordings/participant/track/stop:
+    post:
+      operationId: stopTrackRecording
+      summary: Stop Track Recording
+      description: Stop recording a specific media track.
+      tags:
+      - Track Recordings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - roomId
+              properties:
+                roomId:
+                  type: string
+                participantId:
+                  type: string
+                trackId:
+                  type: string
+      responses:
+        '200':
+          description: Track recording stopped.
+  /recordings/participant/track:
+    get:
+      operationId: fetchTrackRecordings
+      summary: Fetch All Track Recordings
+      description: Retrieve all track recordings.
+      tags:
+      - Track Recordings
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: perPage
+        in: query
+        schema:
+          type: integer
+          default: 20
+      responses:
+        '200':
+          description: List of track recordings.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pageInfo:
+                    $ref: '#/components/schemas/PageInfo'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Recording'
+  /recordings/participant/track/{trackRecordingId}:
+    get:
+      operationId: fetchTrackRecording
+      summary: Fetch Single Track Recording
+      description: Retrieve a specific track recording by ID.
+      tags:
+      - Track Recordings
+      parameters:
+      - name: trackRecordingId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Track recording details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recording'
+    delete:
+      operationId: deleteTrackRecording
+      summary: Delete Track Recording
+      description: Delete a specific track recording.
+      tags:
+      - Track Recordings
+      parameters:
+      - name: trackRecordingId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Track recording deleted.
+  /recordings/participant/merge:
+    post:
+      operationId: startCompositeMerge
+      summary: Start Composite Merge
+      description: Merge multiple participant recordings into a single composite recording.
+      tags:
+      - Track Recordings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                recordingIds:
+                  type: array
+                  items:
+                    type: string
+                  description: IDs of participant recordings to merge.
+      responses:
+        '200':
+          description: Merge job started.
+    get:
+      operationId: fetchMergeRecordings
+      summary: Fetch All Merge Recordings
+      description: Retrieve all composite merge recording jobs.
+      tags:
+      - Track Recordings
+      responses:
+        '200':
+          description: List of merge jobs.
+  /recordings/participant/merge/{mergeId}:
+    get:
+      operationId: fetchMergeRecording
+      summary: Fetch a Merge Recording
+      description: Retrieve details of a specific composite merge job.
+      tags:
+      - Track Recordings
+      parameters:
+      - name: mergeId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Merge recording details.
+components:
+  schemas:
+    PageInfo:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+        perPage:
+          type: integer
+        lastPage:
+          type: integer
+        total:
+          type: integer
+    Recording:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Recording document ID.
+        roomId:
+          type: string
+        sessionId:
+          type: string
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+        file:
+          type: object
+          properties:
+            fileUrl:
+              type: string
+              format: uri
+            size:
+              type: integer
+        status:
+          type: string
+          enum:
+          - completed
+          - failed
+          - processing
+        links:
+          type: object
+          properties:
+            get_room:
+              type: string
+              format: uri
+            get_session:
+              type: string
+              format: uri
+  securitySchemes:
+    JWTAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'JWT token generated using your VideoSDK API key and secret (HS256). Pass the token directly without a "Bearer" prefix.
+
+        '
+externalDocs:
+  description: VideoSDK API Reference
+  url: https://docs.videosdk.live/api-reference/realtime-communication/intro

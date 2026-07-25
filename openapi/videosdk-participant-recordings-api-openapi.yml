@@ -1,0 +1,254 @@
+openapi: 3.0.3
+info:
+  title: VideoSDK Real-Time Communication HLS Streaming Participant Recordings API
+  description: 'REST API for managing rooms, sessions, recordings, RTMP live streams, and HLS streaming for real-time audio and video communication applications. Requires a JWT token signed with your VideoSDK API key and secret, passed in the Authorization header (without a Bearer prefix).
+
+    '
+  version: '2.0'
+  contact:
+    name: VideoSDK Support
+    email: support@videosdk.live
+    url: https://www.videosdk.live/support
+  termsOfService: https://www.videosdk.live/terms
+  license:
+    name: Proprietary
+    url: https://www.videosdk.live/terms
+servers:
+- url: https://api.videosdk.live/v2
+  description: VideoSDK v2 API
+security:
+- JWTAuth: []
+tags:
+- name: Participant Recordings
+  description: Per-participant recording management.
+paths:
+  /recordings/participant/start:
+    post:
+      operationId: startParticipantRecording
+      summary: Start Participant Recording
+      description: Start recording for a specific participant.
+      tags:
+      - Participant Recordings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - roomId
+              properties:
+                roomId:
+                  type: string
+                participantId:
+                  type: string
+                config:
+                  $ref: '#/components/schemas/RecordingConfig'
+      responses:
+        '200':
+          description: Participant recording started.
+  /recordings/participant/stop:
+    post:
+      operationId: stopParticipantRecording
+      summary: Stop Participant Recording
+      description: Stop recording for a specific participant.
+      tags:
+      - Participant Recordings
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - roomId
+              properties:
+                roomId:
+                  type: string
+                participantId:
+                  type: string
+      responses:
+        '200':
+          description: Participant recording stopped.
+  /recordings/participant:
+    get:
+      operationId: fetchParticipantRecordings
+      summary: Fetch All Participant Recordings
+      description: Retrieve all participant recordings.
+      tags:
+      - Participant Recordings
+      parameters:
+      - name: roomId
+        in: query
+        schema:
+          type: string
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: perPage
+        in: query
+        schema:
+          type: integer
+          default: 20
+      responses:
+        '200':
+          description: List of participant recordings.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pageInfo:
+                    $ref: '#/components/schemas/PageInfo'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Recording'
+  /recordings/participant/{participantRecordingId}:
+    get:
+      operationId: fetchParticipantRecording
+      summary: Fetch Single Participant Recording
+      description: Retrieve a specific participant recording by ID.
+      tags:
+      - Participant Recordings
+      parameters:
+      - name: participantRecordingId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Participant recording details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recording'
+    delete:
+      operationId: deleteParticipantRecording
+      summary: Delete Participant Recording
+      description: Delete a specific participant recording.
+      tags:
+      - Participant Recordings
+      parameters:
+      - name: participantRecordingId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Participant recording deleted.
+components:
+  schemas:
+    RecordingConfig:
+      type: object
+      properties:
+        layout:
+          $ref: '#/components/schemas/LayoutConfig'
+        theme:
+          type: string
+          enum:
+          - DARK
+          - LIGHT
+          - DEFAULT
+        mode:
+          type: string
+          enum:
+          - video-and-audio
+          - audio
+        quality:
+          type: string
+          enum:
+          - low
+          - med
+          - high
+          description: low=SD, med=HD, high=Full HD
+        orientation:
+          type: string
+          enum:
+          - portrait
+          - landscape
+    PageInfo:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+        perPage:
+          type: integer
+        lastPage:
+          type: integer
+        total:
+          type: integer
+    LayoutConfig:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - GRID
+          - SPOTLIGHT
+          - SIDEBAR
+          description: Layout type.
+        priority:
+          type: string
+          enum:
+          - SPEAKER
+          - PIN
+          description: Layout priority.
+        gridSize:
+          type: integer
+          description: Number of participants in grid (max 25).
+          maximum: 25
+    Recording:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Recording document ID.
+        roomId:
+          type: string
+        sessionId:
+          type: string
+        start:
+          type: string
+          format: date-time
+        end:
+          type: string
+          format: date-time
+        file:
+          type: object
+          properties:
+            fileUrl:
+              type: string
+              format: uri
+            size:
+              type: integer
+        status:
+          type: string
+          enum:
+          - completed
+          - failed
+          - processing
+        links:
+          type: object
+          properties:
+            get_room:
+              type: string
+              format: uri
+            get_session:
+              type: string
+              format: uri
+  securitySchemes:
+    JWTAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'JWT token generated using your VideoSDK API key and secret (HS256). Pass the token directly without a "Bearer" prefix.
+
+        '
+externalDocs:
+  description: VideoSDK API Reference
+  url: https://docs.videosdk.live/api-reference/realtime-communication/intro

@@ -1,0 +1,268 @@
+openapi: 3.0.3
+info:
+  title: VideoSDK Real-Time Communication HLS Streaming Rooms API
+  description: 'REST API for managing rooms, sessions, recordings, RTMP live streams, and HLS streaming for real-time audio and video communication applications. Requires a JWT token signed with your VideoSDK API key and secret, passed in the Authorization header (without a Bearer prefix).
+
+    '
+  version: '2.0'
+  contact:
+    name: VideoSDK Support
+    email: support@videosdk.live
+    url: https://www.videosdk.live/support
+  termsOfService: https://www.videosdk.live/terms
+  license:
+    name: Proprietary
+    url: https://www.videosdk.live/terms
+servers:
+- url: https://api.videosdk.live/v2
+  description: VideoSDK v2 API
+security:
+- JWTAuth: []
+tags:
+- name: Rooms
+  description: Manage meeting rooms.
+paths:
+  /rooms:
+    post:
+      operationId: createRoom
+      summary: Create a Room
+      description: Creates a new meeting room. Optionally accepts a custom room ID, webhook configuration, and auto-close settings.
+      tags:
+      - Rooms
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                customRoomId:
+                  type: string
+                  description: Custom identifier for the room.
+                webhook:
+                  $ref: '#/components/schemas/WebhookConfig'
+                autoCloseConfig:
+                  $ref: '#/components/schemas/AutoCloseConfig'
+            example:
+              customRoomId: aaa-bbb-ccc
+              webhook:
+                endPoint: https://example.com/webhook
+                events:
+                - recording-started
+                - recording-stopped
+              autoCloseConfig:
+                type: session-end-and-deactivate
+                duration: 60
+      responses:
+        '200':
+          description: Room created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Room'
+              example:
+                roomId: abc-xyzw-lmno
+                customRoomId: final-testing
+                userId: 5f7edbb14c938bcd42944527
+                disabled: false
+                createdAt: '2022-03-25T04:49:11.024Z'
+                updatedAt: '2022-03-25T04:49:11.024Z'
+                id: 624d0e0db6a26a21b7e8ee5e
+                links:
+                  get_room: https://api.videosdk.live/v2/rooms/abc-xyzw-lmno
+        '400':
+          description: Bad request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '401':
+          description: Unauthorized – invalid or missing JWT.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      operationId: fetchRooms
+      summary: Fetch Rooms
+      description: Retrieve a paginated list of all rooms.
+      tags:
+      - Rooms
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+          default: 1
+      - name: perPage
+        in: query
+        schema:
+          type: integer
+          default: 20
+      responses:
+        '200':
+          description: List of rooms.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  pageInfo:
+                    $ref: '#/components/schemas/PageInfo'
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Room'
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /rooms/{roomId}:
+    get:
+      operationId: fetchRoom
+      summary: Fetch a Room
+      description: Retrieve details of a specific room by its ID.
+      tags:
+      - Rooms
+      parameters:
+      - name: roomId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique room identifier.
+      responses:
+        '200':
+          description: Room details.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Room'
+        '404':
+          description: Room not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /rooms/validate/{roomId}:
+    post:
+      operationId: validateRoom
+      summary: Validate a Room
+      description: Validate that a room exists and is active.
+      tags:
+      - Rooms
+      parameters:
+      - name: roomId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Room is valid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Room'
+        '404':
+          description: Room not found or deactivated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    PageInfo:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+        perPage:
+          type: integer
+        lastPage:
+          type: integer
+        total:
+          type: integer
+    AutoCloseConfig:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - session-ends
+          - session-end-and-deactivate
+          description: When to auto-close the room.
+        duration:
+          type: integer
+          description: Duration in minutes before auto-close (default 480).
+          default: 480
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
+    WebhookConfig:
+      type: object
+      properties:
+        endPoint:
+          type: string
+          format: uri
+          description: Webhook URL endpoint.
+        events:
+          type: array
+          items:
+            type: string
+          description: Array of event names or regex patterns to subscribe to.
+    Room:
+      type: object
+      properties:
+        roomId:
+          type: string
+          description: Unique meeting identifier.
+          example: abc-xyzw-lmno
+        customRoomId:
+          type: string
+          description: Custom room identifier if provided.
+          example: final-testing
+        userId:
+          type: string
+          description: Creator's user ID.
+          example: 5f7edbb14c938bcd42944527
+        disabled:
+          type: boolean
+          description: Whether the room is disabled.
+          example: false
+        createdAt:
+          type: string
+          format: date-time
+          description: ISO timestamp of creation.
+        updatedAt:
+          type: string
+          format: date-time
+          description: ISO timestamp of last update.
+        id:
+          type: string
+          description: Room document ID.
+        links:
+          type: object
+          properties:
+            get_room:
+              type: string
+              format: uri
+            get_session:
+              type: string
+              format: uri
+  securitySchemes:
+    JWTAuth:
+      type: apiKey
+      in: header
+      name: Authorization
+      description: 'JWT token generated using your VideoSDK API key and secret (HS256). Pass the token directly without a "Bearer" prefix.
+
+        '
+externalDocs:
+  description: VideoSDK API Reference
+  url: https://docs.videosdk.live/api-reference/realtime-communication/intro
