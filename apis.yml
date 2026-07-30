@@ -5,7 +5,20 @@ description: Real-time voice, video, and AI agent platform for developers. Video
   interactive broadcast applications, and real-time AI agent integrations with SDKs
   for JavaScript, React, Flutter, React Native, Android, and iOS.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/videosdk.png
 url: https://raw.githubusercontent.com/api-evangelist/videosdk/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -22,34 +35,118 @@ tags:
   - Video Conferencing
   - WebSocket
 apis:
-  - aid: videosdk:realtime-communication-api
-    name: VideoSDK Real-Time Communication API
-    description: REST API for managing rooms, sessions, recordings, RTMP live streams,
-      and HLS streaming for real-time audio and video communication applications.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://docs.videosdk.live/api-reference/realtime-communication/intro
-    baseURL: https://api.videosdk.live
-    tags:
-      - Rooms
-      - Sessions
-      - Recordings
-      - Live Streaming
-      - HLS
-      - RTMP
-      - WebRTC
-    properties:
-      - type: Documentation
-        url: https://docs.videosdk.live/api-reference/realtime-communication/intro
-      - type: Authentication
-        url: https://docs.videosdk.live/api-reference/realtime-communication/intro
-      - type: QuotaLimits
-        url: https://docs.videosdk.live/tutorials/quota-limit-and-plan
-      - type: OpenAPI
-        url: openapi/videosdk-realtime-communication-api-openapi.yml
-    contact:
-      - FN: VideoSDK Support
-        email: support@videosdk.live
-        url: https://www.videosdk.live/support
+- aid: videosdk:videosdk-hls-streaming-api
+  name: VideoSDK HLS Streaming API
+  description: HLS live streaming and playback management.
+  humanURL: https://docs.videosdk.live/api-reference/realtime-communication/intro
+  baseURL: https://api.videosdk.live
+  tags:
+  - HLS Streaming
+  properties:
+  - type: OpenAPI
+    url: openapi/videosdk-hls-streaming-api-openapi.yml
+  - type: Documentation
+    url: https://docs.videosdk.live/api-reference/realtime-communication/intro
+  - type: Authentication
+    url: https://docs.videosdk.live/api-reference/realtime-communication/intro
+  - type: QuotaLimits
+    url: https://docs.videosdk.live/tutorials/quota-limit-and-plan
+- aid: videosdk:videosdk-participant-recordings-api
+  name: VideoSDK Participant Recordings API
+  description: Per-participant recording management.
+  humanURL: https://docs.videosdk.live/api-reference/realtime-communication/intro
+  baseURL: https://api.videosdk.live
+  tags:
+  - Participant Recordings
+  properties:
+  - type: OpenAPI
+    url: openapi/videosdk-participant-recordings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.videosdk.live/api-reference/realtime-communication/intro
+  - type: Authentication
+    url: https://docs.videosdk.live/api-reference/realtime-communication/intro
+  - type: QuotaLimits
+    url: https://docs.videosdk.live/tutorials/quota-limit-and-plan
+- aid: videosdk:videosdk-recordings-api
+  name: VideoSDK Recordings API
+  description: Start, stop, and manage meeting recordings.
+  humanURL: https://docs.videosdk.live/api-reference/realtime-communication/intro
+  baseURL: https://api.videosdk.live
+  tags:
+  - Recordings
+  properties:
+  - type: OpenAPI
+    url: openapi/videosdk-recordings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.videosdk.live/api-reference/realtime-communication/intro
+  - type: Authentication
+    url: https://docs.videosdk.live/api-reference/realtime-communication/intro
+  - type: QuotaLimits
+    url: https://docs.videosdk.live/tutorials/quota-limit-and-plan
+- aid: videosdk:videosdk-rooms-api
+  name: VideoSDK Rooms API
+  description: Manage meeting rooms.
+  humanURL: https://docs.videosdk.live/api-reference/realtime-communication/intro
+  baseURL: https://api.videosdk.live
+  tags:
+  - Rooms
+  properties:
+  - type: OpenAPI
+    url: openapi/videosdk-rooms-api-openapi.yml
+  - type: Documentation
+    url: https://docs.videosdk.live/api-reference/realtime-communication/intro
+  - type: Authentication
+    url: https://docs.videosdk.live/api-reference/realtime-communication/intro
+  - type: QuotaLimits
+    url: https://docs.videosdk.live/tutorials/quota-limit-and-plan
+- aid: videosdk:videosdk-rtmp-streaming-api
+  name: VideoSDK RTMP Streaming API
+  description: RTMP live streaming to external platforms.
+  humanURL: https://docs.videosdk.live/api-reference/realtime-communication/intro
+  baseURL: https://api.videosdk.live
+  tags:
+  - RTMP Streaming
+  properties:
+  - type: OpenAPI
+    url: openapi/videosdk-rtmp-streaming-api-openapi.yml
+  - type: Documentation
+    url: https://docs.videosdk.live/api-reference/realtime-communication/intro
+  - type: Authentication
+    url: https://docs.videosdk.live/api-reference/realtime-communication/intro
+  - type: QuotaLimits
+    url: https://docs.videosdk.live/tutorials/quota-limit-and-plan
+- aid: videosdk:videosdk-sessions-api
+  name: VideoSDK Sessions API
+  description: Manage and query meeting sessions and participants.
+  humanURL: https://docs.videosdk.live/api-reference/realtime-communication/intro
+  baseURL: https://api.videosdk.live
+  tags:
+  - Sessions
+  properties:
+  - type: OpenAPI
+    url: openapi/videosdk-sessions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.videosdk.live/api-reference/realtime-communication/intro
+  - type: Authentication
+    url: https://docs.videosdk.live/api-reference/realtime-communication/intro
+  - type: QuotaLimits
+    url: https://docs.videosdk.live/tutorials/quota-limit-and-plan
+- aid: videosdk:videosdk-track-recordings-api
+  name: VideoSDK Track Recordings API
+  description: Per-track and composite recording management.
+  humanURL: https://docs.videosdk.live/api-reference/realtime-communication/intro
+  baseURL: https://api.videosdk.live
+  tags:
+  - Track Recordings
+  properties:
+  - type: OpenAPI
+    url: openapi/videosdk-track-recordings-api-openapi.yml
+  - type: Documentation
+    url: https://docs.videosdk.live/api-reference/realtime-communication/intro
+  - type: Authentication
+    url: https://docs.videosdk.live/api-reference/realtime-communication/intro
+  - type: QuotaLimits
+    url: https://docs.videosdk.live/tutorials/quota-limit-and-plan
 common:
   - type: AgenticAccess
     url: agentic-access/videosdk-agentic-access.yml
