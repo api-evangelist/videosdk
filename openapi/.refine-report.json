@@ -1,0 +1,26 @@
+{
+  "provider": "videosdk",
+  "sources": [
+    "videosdk-hls-streaming-api-openapi.yml",
+    "videosdk-participant-recordings-api-openapi.yml",
+    "videosdk-recordings-api-openapi.yml",
+    "videosdk-rooms-api-openapi.yml",
+    "videosdk-rtmp-streaming-api-openapi.yml",
+    "videosdk-sessions-api-openapi.yml",
+    "videosdk-track-recordings-api-openapi.yml"
+  ],
+  "outputs": [
+    "videosdk-hls-streaming-api-openapi.yml",
+    "videosdk-participant-recordings-api-openapi.yml",
+    "videosdk-recordings-api-openapi.yml",
+    "videosdk-rooms-api-openapi.yml",
+    "videosdk-rtmp-streaming-api-openapi.yml",
+    "videosdk-sessions-api-openapi.yml",
+    "videosdk-track-recordings-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
