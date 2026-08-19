@@ -1,0 +1,101 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VideoSDK Real-Time Communication HLS Streaming Rooms API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rooms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch Rooms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.videosdk.live/v2/rooms",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of all rooms."
+        },
+        {
+          "info": {
+            "name": "Create a Room",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.videosdk.live/v2/rooms",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new meeting room. Optionally accepts a custom room ID, webhook configuration, and auto-close settings."
+        },
+        {
+          "info": {
+            "name": "Fetch a Room",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.videosdk.live/v2/rooms/:roomId",
+            "params": [
+              {
+                "name": "roomId",
+                "value": "",
+                "type": "path",
+                "description": "The unique room identifier."
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific room by its ID."
+        },
+        {
+          "info": {
+            "name": "Validate a Room",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.videosdk.live/v2/rooms/validate/:roomId",
+            "params": [
+              {
+                "name": "roomId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Validate that a room exists and is active."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

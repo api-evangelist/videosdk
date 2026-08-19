@@ -1,0 +1,534 @@
+{
+  "item": [
+    {
+      "id": "4f796f60-a958-4a5d-8cd9-01c45d5f795a",
+      "name": "Participant Recordings",
+      "description": {
+        "content": "Per-participant recording management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "44c2915d-b6ae-4b64-b322-bcbb794157d2",
+          "name": "Start Participant Recording",
+          "request": {
+            "name": "Start Participant Recording",
+            "description": {
+              "content": "Start recording for a specific participant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recordings",
+                "participant",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roomId\": \"<string>\",\n  \"participantId\": \"<string>\",\n  \"config\": {\n    \"layout\": {\n      \"type\": \"<string>\",\n      \"priority\": \"<string>\",\n      \"gridSize\": \"<integer>\"\n    },\n    \"theme\": \"<string>\",\n    \"mode\": \"<string>\",\n    \"quality\": \"<string>\",\n    \"orientation\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3b1d7537-787c-421a-984b-0c1279fd75a8",
+              "name": "Participant recording started.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    "participant",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roomId\": \"<string>\",\n  \"participantId\": \"<string>\",\n  \"config\": {\n    \"layout\": {\n      \"type\": \"<string>\",\n      \"priority\": \"<string>\",\n      \"gridSize\": \"<integer>\"\n    },\n    \"theme\": \"<string>\",\n    \"mode\": \"<string>\",\n    \"quality\": \"<string>\",\n    \"orientation\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "811a244e-ca16-4425-bb45-f265ab890c1c",
+          "name": "Stop Participant Recording",
+          "request": {
+            "name": "Stop Participant Recording",
+            "description": {
+              "content": "Stop recording for a specific participant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recordings",
+                "participant",
+                "stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roomId\": \"<string>\",\n  \"participantId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d747ea96-afa9-44e1-b04c-6a227e26ea2b",
+              "name": "Participant recording stopped.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    "participant",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roomId\": \"<string>\",\n  \"participantId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5d3d7464-3e44-4975-a91f-2d92ee761861",
+          "name": "Fetch All Participant Recordings",
+          "request": {
+            "name": "Fetch All Participant Recordings",
+            "description": {
+              "content": "Retrieve all participant recordings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recordings",
+                "participant"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "roomId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "20"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "88f80d5b-e111-4b8b-9cfb-2bc8006b5873",
+              "name": "List of participant recordings.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    "participant"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "roomId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pageInfo\": {\n    \"currentPage\": 7087,\n    \"perPage\": 2668,\n    \"lastPage\": 5729,\n    \"total\": 6511\n  },\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"roomId\": \"string\",\n      \"sessionId\": \"string\",\n      \"start\": \"1952-03-26T18:03:11.749Z\",\n      \"end\": \"2019-07-06T01:37:49.108Z\",\n      \"file\": {\n        \"fileUrl\": \"https://lxEjSiMtqfGE.xjwWJJimGnGWuPw2JOlWfelQHJ5\",\n        \"size\": 3016\n      },\n      \"status\": \"completed\",\n      \"links\": {\n        \"get_room\": \"https://hmUckeSPMKgLhkW.gqlskfyJiq3LB\",\n        \"get_session\": \"https://iYunTZR.meqqi84r0hHzboQ0SNfFnBkJpIRYhS.jcwJS5w1FQnXfbkrB5BqhmqiY25w5qVk5Ql0sPXA3t\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"roomId\": \"string\",\n      \"sessionId\": \"string\",\n      \"start\": \"1958-11-08T15:35:58.380Z\",\n      \"end\": \"1988-12-14T17:54:26.796Z\",\n      \"file\": {\n        \"fileUrl\": \"https://ADXcigLMcrCOGS.vtlE-aRWZnWiYQWnqsEdrYJlcwOj.e1ifjh0ucMRW03M+gs\",\n        \"size\": 7644\n      },\n      \"status\": \"failed\",\n      \"links\": {\n        \"get_room\": \"http://ncTn.zrpdyszlLMhQcPay+jiFyDNMdBJffOm3atSahbNOoJv-GqPnYhwNx\",\n        \"get_session\": \"https://RhDRWIOJGAhzBKgFNVruLVJGpDIjMbKKV.obwYhA9VCQKYq5BLPYK-FTbgVOD\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b07de4e9-6a26-4e94-9498-163e2f3cf3af",
+          "name": "Fetch Single Participant Recording",
+          "request": {
+            "name": "Fetch Single Participant Recording",
+            "description": {
+              "content": "Retrieve a specific participant recording by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recordings",
+                "participant",
+                ":participantRecordingId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "participantRecordingId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b302a8c8-614e-4117-a3f7-d620c97adef1",
+              "name": "Participant recording details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    "participant",
+                    ":participantRecordingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "participantRecordingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"roomId\": \"string\",\n  \"sessionId\": \"string\",\n  \"start\": \"1977-12-31T04:12:16.925Z\",\n  \"end\": \"1956-09-01T04:08:20.579Z\",\n  \"file\": {\n    \"fileUrl\": \"https://kEXcIHQzvBDzRhOUpMrhyxJisNrgS.iptmwnqgz5r6\",\n    \"size\": 9639\n  },\n  \"status\": \"failed\",\n  \"links\": {\n    \"get_room\": \"http://ewTqxnrLIOWileDhybgBbSg.oqvSYNhZTm3YtHkzy3fLYvtPnBMoTzLHkf+C-7jllsCD8abYLQFJjbm6\",\n    \"get_session\": \"https://UhjfeHylKzrCamubqWpk.egdWj6AouvTeXnvXDkAlY-1l,l1mVwSRSgR\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "366013f7-d8dd-4189-8785-b2ccd9b747d6",
+          "name": "Delete Participant Recording",
+          "request": {
+            "name": "Delete Participant Recording",
+            "description": {
+              "content": "Delete a specific participant recording.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recordings",
+                "participant",
+                ":participantRecordingId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "participantRecordingId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "42584c43-fb39-4600-b060-44889dd24f1e",
+              "name": "Participant recording deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    "participant",
+                    ":participantRecordingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "participantRecordingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.videosdk.live/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cf353511-474d-4d2b-89a0-04c4e6fd442a",
+    "name": "VideoSDK Real-Time Communication HLS Streaming Participant Recordings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing rooms, sessions, recordings, RTMP live streams, and HLS streaming for real-time audio and video communication applications. Requires a JWT token signed with your VideoSDK API key and secret, passed in the Authorization header (without a Bearer prefix).\n\n\nContact Support:\n Name: VideoSDK Support\n Email: support@videosdk.live",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,677 @@
+{
+  "item": [
+    {
+      "id": "10422f9a-b235-4d27-854a-2f8a02cb83d4",
+      "name": "HLS Streaming",
+      "description": {
+        "content": "HLS live streaming and playback management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ca183b54-7925-4284-a77a-cb95391088f7",
+          "name": "Start HLS Stream",
+          "request": {
+            "name": "Start HLS Stream",
+            "description": {
+              "content": "Start an HLS live stream for a meeting session.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hls",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roomId\": \"<string>\",\n  \"templateUrl\": \"<uri>\",\n  \"transcription\": {\n    \"enabled\": \"<boolean>\",\n    \"summary\": {\n      \"enabled\": \"<boolean>\",\n      \"prompt\": \"<string>\"\n    }\n  },\n  \"summary\": {\n    \"enabled\": \"<boolean>\",\n    \"prompt\": \"<string>\"\n  },\n  \"config\": {\n    \"layout\": {\n      \"type\": \"<string>\",\n      \"priority\": \"<string>\",\n      \"gridSize\": \"<integer>\"\n    },\n    \"theme\": \"<string>\",\n    \"mode\": \"<string>\",\n    \"quality\": \"<string>\",\n    \"orientation\": \"<string>\",\n    \"recording\": {\n      \"enabled\": \"<boolean>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e5f06853-6e8b-4d54-9ab0-ed6db6d4bb9a",
+              "name": "HLS stream started.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hls",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roomId\": \"abc-xyzw-lmno\",\n  \"config\": {\n    \"layout\": {\n      \"type\": \"GRID\"\n    },\n    \"orientation\": \"landscape\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"sessionId\": \"abcde94c96e17e03fb0abcde4\",\n  \"start\": \"2022-04-19T09:18:13.432Z\",\n  \"roomId\": \"abcd-efgh-ijkl\",\n  \"playbackHlsUrl\": \"https://cdn.videosdk.live/meetings-hls/abcdefgh-ijkl-mnop/index.m3u8\",\n  \"livestreamUrl\": \"https://cdn.videosdk.live/meetings-hls/abcdefgh-ijkl-mnop/live.m3u8\",\n  \"id\": \"abcdef9879288c1f48339f64\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2a786441-66a9-47ce-aafb-3cc16ef3c9ff",
+          "name": "Stop HLS Stream",
+          "request": {
+            "name": "Stop HLS Stream",
+            "description": {
+              "content": "Stop an active HLS stream.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hls",
+                "stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roomId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6a141502-3ef0-411d-821d-cc85f8ba7d7a",
+              "name": "HLS stream stopped.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hls",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roomId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d73f5d50-fb2b-4064-91ac-665ed7173489",
+          "name": "Fetch All HLS Streams",
+          "request": {
+            "name": "Fetch All HLS Streams",
+            "description": {
+              "content": "Retrieve all HLS streams.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hls"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "roomId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "20"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a324863d-aa00-4c86-952c-4d5fdec3ea58",
+              "name": "List of HLS streams.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hls"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "roomId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pageInfo\": {\n    \"currentPage\": 9682,\n    \"perPage\": 5973,\n    \"lastPage\": 7597,\n    \"total\": 9014\n  },\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"sessionId\": \"string\",\n      \"roomId\": \"string\",\n      \"start\": \"1998-03-28T15:08:33.344Z\",\n      \"playbackHlsUrl\": \"https://AWc.idqv.Dkj,WFMbIN,aFofebJtoq1iDRwQ1NnZqmWusMC9s\",\n      \"livestreamUrl\": \"http://XGCsTrJbcpjdXwcSTjY.xjQO5FYdToex72,.naaIXERJ5,zUum9WsAACeejCzM9b-\",\n      \"downstreamUrl\": \"http://gDGFSScAMNKaGXH.mmiYwDfoCUCcZ+csWYN9-N+uDv4j.PbHhQTi+BFhRgZKRX4EgjVsWqKJUThlmZBHoBGU,D\",\n      \"links\": {\n        \"get_room\": \"https://xIRCDxHGOCnLIYU.osmu,IhgsHqBC9.R7IJSjRTYhm,BCIZO.JPcrA5\",\n        \"get_session\": \"https://QsserxHkrFYtdBWUnuYEPmQlrP.ewiT1mAZzYxVInb4awH\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"sessionId\": \"string\",\n      \"roomId\": \"string\",\n      \"start\": \"1992-01-22T23:59:24.926Z\",\n      \"playbackHlsUrl\": \"https://LfNuwfkjJrmSpy.xlBjsGTjJQoFP8usAIfJ3DBgMz\",\n      \"livestreamUrl\": \"http://JlqDGS.mhjKO4yKglQEVhwrqC7EchtIiK.+bukabbOag4bgIoM8eVPcVlODsYV3rq1VxDs7PVz\",\n      \"downstreamUrl\": \"https://bhHgebcWuJVGzqxTNFmI.dhBwJpXUAZdXvJr6m.1NLJldh0GN-e+1Z\",\n      \"links\": {\n        \"get_room\": \"http://lwRlKKYyExeqGXVMZwbWnC.yvgqqf5mw2k3kK8VeHC8YXEfcDPa7L5ByrIDycoYBq1AJS.YvzPeVFTo\",\n        \"get_session\": \"http://sGdazxLRPF.lov0KnuPdTk-5mVkCnSw8bzk3JyqCcReGtr,aFaToxZulTNHEgMY-uDxxZCcy\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65d30c60-50b5-47e1-ac90-71052faa2354",
+          "name": "Fetch Single HLS Stream",
+          "request": {
+            "name": "Fetch Single HLS Stream",
+            "description": {
+              "content": "Retrieve details of a specific HLS stream.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hls",
+                ":hlsId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "hlsId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "553f2f93-e9bb-4292-a99d-8473265c6b42",
+              "name": "HLS stream details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hls",
+                    ":hlsId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hlsId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"sessionId\": \"string\",\n  \"roomId\": \"string\",\n  \"start\": \"1990-06-04T12:52:35.591Z\",\n  \"playbackHlsUrl\": \"https://O.omtKmzwPswUUUpmac6S-5I7yc.x-g4m8VcfwOLY9UtufTSVVQ..TGDI+sWSL03lCBoisfI2RZ\",\n  \"livestreamUrl\": \"https://oyfopfJNqXVtSZkbSGfMBrafvY.hzLjIbFUxVrMFiTQQ5wxA-mfARKPyBagiNIfkq3q+urwnKwb+W.NTl\",\n  \"downstreamUrl\": \"http://oQJsofDrMbrEHg.nmadZxv9KyGW+1wit03AofZ1LGOHmvqSegLEhXXT5gTWtZtzbCfN-m\",\n  \"links\": {\n    \"get_room\": \"https://DhkHLCzIPNyotZO.dpIasCw\",\n    \"get_session\": \"http://JkfAL.uvrabVwwfO7w9ZhA,QF.sbaev1Ru2zZQpUiA9Jk8\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b444fbcd-32d2-46ff-bd7e-8b2f43c539a9",
+              "name": "HLS stream not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hls",
+                    ":hlsId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hlsId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7e3581b2-6fa0-4eee-adb5-f6aa045bb366",
+          "name": "Delete HLS Stream",
+          "request": {
+            "name": "Delete HLS Stream",
+            "description": {
+              "content": "Delete a specific HLS stream record.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hls",
+                ":hlsId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "hlsId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c0135341-ab33-490f-bff4-f5c7b0833e25",
+              "name": "HLS stream deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hls",
+                    ":hlsId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "hlsId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f82fc476-8fba-43e0-89ae-ef7cbda6e152",
+          "name": "Fetch HLS Thumbnail",
+          "request": {
+            "name": "Fetch HLS Thumbnail",
+            "description": {
+              "content": "Capture a thumbnail snapshot from an active HLS stream.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hls",
+                "capture"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roomId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cf6170ae-57de-4193-8edb-111a62110643",
+              "name": "Thumbnail capture initiated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hls",
+                    "capture"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roomId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.videosdk.live/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e43e3bba-a4d0-4667-b915-d895785c5ab2",
+    "name": "VideoSDK Real-Time Communication HLS Streaming API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing rooms, sessions, recordings, RTMP live streams, and HLS streaming for real-time audio and video communication applications. Requires a JWT token signed with your VideoSDK API key and secret, passed in the Authorization header (without a Bearer prefix).\n\n\nContact Support:\n Name: VideoSDK Support\n Email: support@videosdk.live",
+      "type": "text/plain"
+    }
+  }
+}

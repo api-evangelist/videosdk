@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VideoSDK Real-Time Communication HLS Streaming Recordings API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Recordings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Start Meeting Recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.videosdk.live/v2/recordings/start",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start recording an active meeting session."
+        },
+        {
+          "info": {
+            "name": "Stop Meeting Recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.videosdk.live/v2/recordings/stop",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Stop an active meeting recording."
+        },
+        {
+          "info": {
+            "name": "Fetch Recordings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.videosdk.live/v2/recordings",
+            "params": [
+              {
+                "name": "roomId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of meeting recordings."
+        },
+        {
+          "info": {
+            "name": "Fetch a Recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.videosdk.live/v2/recordings/:recordingId",
+            "params": [
+              {
+                "name": "recordingId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific recording by its ID."
+        },
+        {
+          "info": {
+            "name": "Delete a Recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.videosdk.live/v2/recordings/:recordingId",
+            "params": [
+              {
+                "name": "recordingId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a specific recording."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

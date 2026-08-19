@@ -1,0 +1,792 @@
+{
+  "item": [
+    {
+      "id": "bae6eecb-99d4-4251-8229-f1c7e8096696",
+      "name": "Track Recordings",
+      "description": {
+        "content": "Per-track and composite recording management.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ff5d614d-52d3-4bcd-b49d-36d538aff216",
+          "name": "Start Track Recording",
+          "request": {
+            "name": "Start Track Recording",
+            "description": {
+              "content": "Start recording a specific media track for a participant.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recordings",
+                "participant",
+                "track",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roomId\": \"<string>\",\n  \"participantId\": \"<string>\",\n  \"trackId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7227e58d-9887-4db5-a8f4-8578bf323ffb",
+              "name": "Track recording started.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    "participant",
+                    "track",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roomId\": \"<string>\",\n  \"participantId\": \"<string>\",\n  \"trackId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "878ee432-005b-4e38-a446-2d140626b1a7",
+          "name": "Stop Track Recording",
+          "request": {
+            "name": "Stop Track Recording",
+            "description": {
+              "content": "Stop recording a specific media track.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recordings",
+                "participant",
+                "track",
+                "stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roomId\": \"<string>\",\n  \"participantId\": \"<string>\",\n  \"trackId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "88bba9b4-1276-4d4d-8b26-77d0bfabff79",
+              "name": "Track recording stopped.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    "participant",
+                    "track",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roomId\": \"<string>\",\n  \"participantId\": \"<string>\",\n  \"trackId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7262650e-b09f-4516-a453-715de90d56ec",
+          "name": "Fetch All Track Recordings",
+          "request": {
+            "name": "Fetch All Track Recordings",
+            "description": {
+              "content": "Retrieve all track recordings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recordings",
+                "participant",
+                "track"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "20"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1389913b-5621-48c7-b348-880734716fef",
+              "name": "List of track recordings.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    "participant",
+                    "track"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pageInfo\": {\n    \"currentPage\": 5474,\n    \"perPage\": 9502,\n    \"lastPage\": 8535,\n    \"total\": 7798\n  },\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"roomId\": \"string\",\n      \"sessionId\": \"string\",\n      \"start\": \"1971-02-23T01:38:33.369Z\",\n      \"end\": \"2003-05-26T14:54:37.748Z\",\n      \"file\": {\n        \"fileUrl\": \"http://MlFlptqJeLYqrmZSUdUgNHYuLpSu.aqafLycN-RSocREl\",\n        \"size\": 3009\n      },\n      \"status\": \"processing\",\n      \"links\": {\n        \"get_room\": \"https://gZbni.eblzGGmf7+6ZK\",\n        \"get_session\": \"http://ZhRmkcPXzVyPY.svppkyVq\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"roomId\": \"string\",\n      \"sessionId\": \"string\",\n      \"start\": \"1972-12-04T22:27:48.241Z\",\n      \"end\": \"1954-07-01T13:32:32.913Z\",\n      \"file\": {\n        \"fileUrl\": \"http://GxxnrdGuMuJnPP.pxlaQtHrffi54p6I-BGSQqVB6nnzIgh-sm8p2FbwuURy35Pkj.NFG7qpIoBUGFcy1NL\",\n        \"size\": 1002\n      },\n      \"status\": \"processing\",\n      \"links\": {\n        \"get_room\": \"http://BphOtBHWDvlqujpxrRHrzkDodEntWpObi.bycnj0pUw1ZoQRAt0eMmuPUY5zvT30StCB52QUr,UhQZYZ94EsiasEUOe3naSVAAuVGhZmN71-\",\n        \"get_session\": \"http://vthgKEYvgygiGhimebutNNLE.jwYFHK5UQtb\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35704799-85e6-4dc9-b38a-56d7af8163ab",
+          "name": "Fetch Single Track Recording",
+          "request": {
+            "name": "Fetch Single Track Recording",
+            "description": {
+              "content": "Retrieve a specific track recording by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recordings",
+                "participant",
+                "track",
+                ":trackRecordingId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trackRecordingId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b137ba52-805e-4b26-bec7-6d48ab25c0f8",
+              "name": "Track recording details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    "participant",
+                    "track",
+                    ":trackRecordingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trackRecordingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"roomId\": \"string\",\n  \"sessionId\": \"string\",\n  \"start\": \"2011-09-23T06:01:29.052Z\",\n  \"end\": \"1978-07-12T11:08:48.757Z\",\n  \"file\": {\n    \"fileUrl\": \"https://Mev.wufphLC1DafvqtXeRXm6OYkZEWG7mKv0zvBr\",\n    \"size\": 8245\n  },\n  \"status\": \"failed\",\n  \"links\": {\n    \"get_room\": \"http://cNCBULNvjWywnymcGmbkrHDFYTXpLQlyB.wxpJmSgM++wrQSxOLF-CJYCJAfDlwR21igYzbf8vqC8\",\n    \"get_session\": \"http://Eqbdtfn.soxsX6Sr\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1e6c843a-a8c9-4a46-b8ac-905d83511a88",
+          "name": "Delete Track Recording",
+          "request": {
+            "name": "Delete Track Recording",
+            "description": {
+              "content": "Delete a specific track recording.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recordings",
+                "participant",
+                "track",
+                ":trackRecordingId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "trackRecordingId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c4198fec-8575-4a7a-9910-df84fd6f1ab3",
+              "name": "Track recording deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    "participant",
+                    "track",
+                    ":trackRecordingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "trackRecordingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d8125a23-d711-4c08-a627-ba78f482c8d3",
+          "name": "Start Composite Merge",
+          "request": {
+            "name": "Start Composite Merge",
+            "description": {
+              "content": "Merge multiple participant recordings into a single composite recording.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recordings",
+                "participant",
+                "merge"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"recordingIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "18cc20a0-8986-4dd8-876a-d1c69c51c5ff",
+              "name": "Merge job started.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    "participant",
+                    "merge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"recordingIds\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "258620a6-227b-4b04-a12d-a77f2ad268f9",
+          "name": "Fetch All Merge Recordings",
+          "request": {
+            "name": "Fetch All Merge Recordings",
+            "description": {
+              "content": "Retrieve all composite merge recording jobs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recordings",
+                "participant",
+                "merge"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "471ac7a7-baad-4534-bb74-023d9bee13e2",
+              "name": "List of merge jobs.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    "participant",
+                    "merge"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c54a424d-2275-4843-b856-e85c8208abb7",
+          "name": "Fetch a Merge Recording",
+          "request": {
+            "name": "Fetch a Merge Recording",
+            "description": {
+              "content": "Retrieve details of a specific composite merge job.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recordings",
+                "participant",
+                "merge",
+                ":mergeId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "mergeId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "23e90a57-a840-4f20-9f54-0bc641d5f45f",
+              "name": "Merge recording details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    "participant",
+                    "merge",
+                    ":mergeId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mergeId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.videosdk.live/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d29eb6f7-fa06-4c2f-ba5a-16473ff8b9d1",
+    "name": "VideoSDK Real-Time Communication HLS Streaming Track Recordings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing rooms, sessions, recordings, RTMP live streams, and HLS streaming for real-time audio and video communication applications. Requires a JWT token signed with your VideoSDK API key and secret, passed in the Authorization header (without a Bearer prefix).\n\n\nContact Support:\n Name: VideoSDK Support\n Email: support@videosdk.live",
+      "type": "text/plain"
+    }
+  }
+}

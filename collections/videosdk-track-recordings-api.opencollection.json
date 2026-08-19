@@ -1,0 +1,159 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VideoSDK Real-Time Communication HLS Streaming Track Recordings API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Track Recordings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Start Track Recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.videosdk.live/v2/recordings/participant/track/start",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start recording a specific media track for a participant."
+        },
+        {
+          "info": {
+            "name": "Stop Track Recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.videosdk.live/v2/recordings/participant/track/stop",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Stop recording a specific media track."
+        },
+        {
+          "info": {
+            "name": "Fetch All Track Recordings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.videosdk.live/v2/recordings/participant/track",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve all track recordings."
+        },
+        {
+          "info": {
+            "name": "Fetch Single Track Recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.videosdk.live/v2/recordings/participant/track/:trackRecordingId",
+            "params": [
+              {
+                "name": "trackRecordingId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific track recording by ID."
+        },
+        {
+          "info": {
+            "name": "Delete Track Recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.videosdk.live/v2/recordings/participant/track/:trackRecordingId",
+            "params": [
+              {
+                "name": "trackRecordingId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a specific track recording."
+        },
+        {
+          "info": {
+            "name": "Fetch All Merge Recordings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.videosdk.live/v2/recordings/participant/merge"
+          },
+          "docs": "Retrieve all composite merge recording jobs."
+        },
+        {
+          "info": {
+            "name": "Start Composite Merge",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.videosdk.live/v2/recordings/participant/merge",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Merge multiple participant recordings into a single composite recording."
+        },
+        {
+          "info": {
+            "name": "Fetch a Merge Recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.videosdk.live/v2/recordings/participant/merge/:mergeId",
+            "params": [
+              {
+                "name": "mergeId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific composite merge job."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,243 @@
+{
+  "item": [
+    {
+      "id": "4838699e-fb5c-4d69-8df4-826703c67137",
+      "name": "RTMP Streaming",
+      "description": {
+        "content": "RTMP live streaming to external platforms.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b5baee68-db64-4e41-a16b-711d4c8e0030",
+          "name": "Start RTMP Live Stream",
+          "request": {
+            "name": "Start RTMP Live Stream",
+            "description": {
+              "content": "Start an RTMP live stream from a meeting session to one or more external platforms.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "livestreams",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roomId\": \"<string>\",\n  \"outputs\": [\n    {\n      \"streamKey\": \"<string>\",\n      \"url\": \"<uri>\"\n    },\n    {\n      \"streamKey\": \"<string>\",\n      \"url\": \"<uri>\"\n    }\n  ],\n  \"templateUrl\": \"<uri>\",\n  \"transcription\": {\n    \"enabled\": \"<boolean>\",\n    \"summary\": {\n      \"enabled\": \"<boolean>\",\n      \"prompt\": \"<string>\"\n    }\n  },\n  \"config\": {\n    \"layout\": {\n      \"type\": \"<string>\",\n      \"priority\": \"<string>\",\n      \"gridSize\": \"<integer>\"\n    },\n    \"theme\": \"<string>\",\n    \"recording\": {\n      \"enabled\": \"<boolean>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "be7cc183-a8cb-4c49-8733-6f8abb03b43c",
+              "name": "Livestream started successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "livestreams",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roomId\": \"abc-xyzw-lmno\",\n  \"outputs\": [\n    {\n      \"url\": \"rtmp://live.twitch.tv/app\",\n      \"streamKey\": \"live_1234567890_abcdefgh\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"Livestream started successfully\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e1e6f85f-dde1-4f5b-a9b7-819b273f8856",
+          "name": "Stop RTMP Live Stream",
+          "request": {
+            "name": "Stop RTMP Live Stream",
+            "description": {
+              "content": "Stop an active RTMP live stream.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "livestreams",
+                "stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roomId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "29814bff-e98b-4525-9d16-0ba7106dd1d9",
+              "name": "Livestream stopped successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "livestreams",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roomId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.videosdk.live/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "60bedc08-aa37-4565-8097-86e40dd08dfc",
+    "name": "VideoSDK Real-Time Communication HLS Streaming RTMP Streaming API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing rooms, sessions, recordings, RTMP live streams, and HLS streaming for real-time audio and video communication applications. Requires a JWT token signed with your VideoSDK API key and secret, passed in the Authorization header (without a Bearer prefix).\n\n\nContact Support:\n Name: VideoSDK Support\n Email: support@videosdk.live",
+      "type": "text/plain"
+    }
+  }
+}

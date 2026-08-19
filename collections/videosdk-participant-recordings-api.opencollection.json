@@ -1,0 +1,120 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VideoSDK Real-Time Communication HLS Streaming Participant Recordings API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Participant Recordings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Start Participant Recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.videosdk.live/v2/recordings/participant/start",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Start recording for a specific participant."
+        },
+        {
+          "info": {
+            "name": "Stop Participant Recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.videosdk.live/v2/recordings/participant/stop",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Stop recording for a specific participant."
+        },
+        {
+          "info": {
+            "name": "Fetch All Participant Recordings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.videosdk.live/v2/recordings/participant",
+            "params": [
+              {
+                "name": "roomId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve all participant recordings."
+        },
+        {
+          "info": {
+            "name": "Fetch Single Participant Recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.videosdk.live/v2/recordings/participant/:participantRecordingId",
+            "params": [
+              {
+                "name": "participantRecordingId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific participant recording by ID."
+        },
+        {
+          "info": {
+            "name": "Delete Participant Recording",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.videosdk.live/v2/recordings/participant/:participantRecordingId",
+            "params": [
+              {
+                "name": "participantRecordingId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete a specific participant recording."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

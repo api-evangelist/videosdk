@@ -1,0 +1,156 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "VideoSDK Real-Time Communication HLS Streaming Sessions API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Authorization",
+      "value": "{{Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sessions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fetch Sessions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.videosdk.live/v2/sessions",
+            "params": [
+              {
+                "name": "roomId",
+                "value": "",
+                "type": "query",
+                "description": "The ID of the Room."
+              },
+              {
+                "name": "customRoomId",
+                "value": "",
+                "type": "query",
+                "description": "Custom room ID specified during creation."
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "perPage",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of sessions for a given room."
+        },
+        {
+          "info": {
+            "name": "Fetch a Session",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.videosdk.live/v2/sessions/:sessionId",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific session by its ID."
+        },
+        {
+          "info": {
+            "name": "Fetch Participants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.videosdk.live/v2/sessions/:sessionId/participants",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve all participants in a session."
+        },
+        {
+          "info": {
+            "name": "Fetch Active Participants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.videosdk.live/v2/sessions/:sessionId/participants/active",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve participants currently active in a session."
+        },
+        {
+          "info": {
+            "name": "Fetch Session Quality Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.videosdk.live/v2/sessions/:sessionId/stats",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve quality statistics for a session."
+        },
+        {
+          "info": {
+            "name": "Fetch Peer Quality Stats",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.videosdk.live/v2/sessions/:sessionId/participant/:participantId/stats",
+            "params": [
+              {
+                "name": "sessionId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "participantId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve quality statistics for a specific participant in a session."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

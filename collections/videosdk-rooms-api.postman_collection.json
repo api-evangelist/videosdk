@@ -1,0 +1,699 @@
+{
+  "item": [
+    {
+      "id": "2d4edc55-ac53-471d-a39b-436d894cc08c",
+      "name": "Rooms",
+      "description": {
+        "content": "Manage meeting rooms.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "88ba344a-db8e-4610-b393-bc9ee3cfb87d",
+          "name": "Create a Room",
+          "request": {
+            "name": "Create a Room",
+            "description": {
+              "content": "Creates a new meeting room. Optionally accepts a custom room ID, webhook configuration, and auto-close settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rooms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"customRoomId\": \"<string>\",\n  \"webhook\": {\n    \"endPoint\": \"<uri>\",\n    \"events\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"autoCloseConfig\": {\n    \"type\": \"<string>\",\n    \"duration\": 480\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "33eba472-1987-4826-89bd-9c6ec8626286",
+              "name": "Room created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rooms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customRoomId\": \"aaa-bbb-ccc\",\n  \"webhook\": {\n    \"endPoint\": \"https://example.com/webhook\",\n    \"events\": [\n      \"recording-started\",\n      \"recording-stopped\"\n    ]\n  },\n  \"autoCloseConfig\": {\n    \"type\": \"session-end-and-deactivate\",\n    \"duration\": 60\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"roomId\": \"abc-xyzw-lmno\",\n  \"customRoomId\": \"final-testing\",\n  \"userId\": \"5f7edbb14c938bcd42944527\",\n  \"disabled\": false,\n  \"createdAt\": \"2022-03-25T04:49:11.024Z\",\n  \"updatedAt\": \"2022-03-25T04:49:11.024Z\",\n  \"id\": \"624d0e0db6a26a21b7e8ee5e\",\n  \"links\": {\n    \"get_room\": \"https://api.videosdk.live/v2/rooms/abc-xyzw-lmno\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "775ea335-cf67-4cd4-9ebd-b61ead2ffd43",
+              "name": "Bad request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rooms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customRoomId\": \"aaa-bbb-ccc\",\n  \"webhook\": {\n    \"endPoint\": \"https://example.com/webhook\",\n    \"events\": [\n      \"recording-started\",\n      \"recording-stopped\"\n    ]\n  },\n  \"autoCloseConfig\": {\n    \"type\": \"session-end-and-deactivate\",\n    \"duration\": 60\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "97cb086a-60f7-49ec-9ed8-a79e0ebee45b",
+              "name": "Unauthorized – invalid or missing JWT.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rooms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"customRoomId\": \"aaa-bbb-ccc\",\n  \"webhook\": {\n    \"endPoint\": \"https://example.com/webhook\",\n    \"events\": [\n      \"recording-started\",\n      \"recording-stopped\"\n    ]\n  },\n  \"autoCloseConfig\": {\n    \"type\": \"session-end-and-deactivate\",\n    \"duration\": 60\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "78f656d4-aa3f-49c7-91fd-2cc60e2c9daa",
+          "name": "Fetch Rooms",
+          "request": {
+            "name": "Fetch Rooms",
+            "description": {
+              "content": "Retrieve a paginated list of all rooms.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rooms"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "20"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "21d0e13c-8202-4ed0-94e9-5c2115d61aa7",
+              "name": "List of rooms.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rooms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pageInfo\": {\n    \"currentPage\": 3882,\n    \"perPage\": 1340,\n    \"lastPage\": 2835,\n    \"total\": 5424\n  },\n  \"data\": [\n    {\n      \"roomId\": \"abc-xyzw-lmno\",\n      \"customRoomId\": \"final-testing\",\n      \"userId\": \"5f7edbb14c938bcd42944527\",\n      \"disabled\": false,\n      \"createdAt\": \"2005-04-17T03:04:03.863Z\",\n      \"updatedAt\": \"1959-07-07T09:55:26.392Z\",\n      \"id\": \"string\",\n      \"links\": {\n        \"get_room\": \"https://CqKihSJpOkMMlOijOswoGnjkHGBZYmhW.oewqq0N5eOM7hl8qMRoG9piLwbiYTOPQmDxjuurP2UQhMqTDj\",\n        \"get_session\": \"https://RsByCRkspejcwmE.wgvFruJgSAPaEWeKSkr\"\n      }\n    },\n    {\n      \"roomId\": \"abc-xyzw-lmno\",\n      \"customRoomId\": \"final-testing\",\n      \"userId\": \"5f7edbb14c938bcd42944527\",\n      \"disabled\": false,\n      \"createdAt\": \"2016-08-14T13:59:50.417Z\",\n      \"updatedAt\": \"1984-11-01T23:53:40.709Z\",\n      \"id\": \"string\",\n      \"links\": {\n        \"get_room\": \"http://nbXxVwXyPCfYpRQiRISIWFJRdOydjXdz.lxelO30HU4hGLaohlPFvm\",\n        \"get_session\": \"http://qRkSQhKRVPKACxWyeIVFyG.xuhb9Gy34dMmBziScCasDEBNsCC8qPkvNYjUZZhyB\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "75357fe6-db68-4379-a5f7-61e7affffe85",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rooms"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "86fb8b6f-48ac-449b-9fd8-e88e7be560f2",
+          "name": "Fetch a Room",
+          "request": {
+            "name": "Fetch a Room",
+            "description": {
+              "content": "Retrieve details of a specific room by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rooms",
+                ":roomId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "roomId",
+                  "description": "(Required) The unique room identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dcee729f-3bcc-4f5e-ac0b-43031fda9943",
+              "name": "Room details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rooms",
+                    ":roomId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roomId",
+                      "description": "(Required) The unique room identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"roomId\": \"abc-xyzw-lmno\",\n  \"customRoomId\": \"final-testing\",\n  \"userId\": \"5f7edbb14c938bcd42944527\",\n  \"disabled\": false,\n  \"createdAt\": \"1953-12-15T22:08:31.109Z\",\n  \"updatedAt\": \"1960-09-15T02:03:20.441Z\",\n  \"id\": \"string\",\n  \"links\": {\n    \"get_room\": \"https://iciJgA.ioggJOWU27PIbP02DZtT-I9cdObywb-oPH\",\n    \"get_session\": \"http://xMVObIWdpdawCmVNIdyZ.urnVK+VjlwusEzcewFuxhPJAWKcAYwsgu1Jz0EGFEjatZXbbH\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa2742ed-2b61-4ec3-9122-e73d43f7c782",
+              "name": "Room not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rooms",
+                    ":roomId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roomId",
+                      "description": "(Required) The unique room identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "00048ef6-d6c3-47c1-b01e-40605ec69c69",
+          "name": "Validate a Room",
+          "request": {
+            "name": "Validate a Room",
+            "description": {
+              "content": "Validate that a room exists and is active.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "rooms",
+                "validate",
+                ":roomId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "roomId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6c7c38b6-0296-4ebe-b5c6-e2fa5c976fd7",
+              "name": "Room is valid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rooms",
+                    "validate",
+                    ":roomId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roomId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"roomId\": \"abc-xyzw-lmno\",\n  \"customRoomId\": \"final-testing\",\n  \"userId\": \"5f7edbb14c938bcd42944527\",\n  \"disabled\": false,\n  \"createdAt\": \"1953-12-15T22:08:31.109Z\",\n  \"updatedAt\": \"1960-09-15T02:03:20.441Z\",\n  \"id\": \"string\",\n  \"links\": {\n    \"get_room\": \"https://iciJgA.ioggJOWU27PIbP02DZtT-I9cdObywb-oPH\",\n    \"get_session\": \"http://xMVObIWdpdawCmVNIdyZ.urnVK+VjlwusEzcewFuxhPJAWKcAYwsgu1Jz0EGFEjatZXbbH\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0e91a491-0373-44f7-8f5a-04189d2dcda2",
+              "name": "Room not found or deactivated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "rooms",
+                    "validate",
+                    ":roomId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "roomId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.videosdk.live/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4625eb71-49a9-44fc-b239-3ab6c401524a",
+    "name": "VideoSDK Real-Time Communication HLS Streaming Rooms API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing rooms, sessions, recordings, RTMP live streams, and HLS streaming for real-time audio and video communication applications. Requires a JWT token signed with your VideoSDK API key and secret, passed in the Authorization header (without a Bearer prefix).\n\n\nContact Support:\n Name: VideoSDK Support\n Email: support@videosdk.live",
+      "type": "text/plain"
+    }
+  }
+}

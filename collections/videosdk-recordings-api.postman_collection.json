@@ -1,0 +1,650 @@
+{
+  "item": [
+    {
+      "id": "c497083f-6369-4768-9c6a-04643b9ccbc0",
+      "name": "Recordings",
+      "description": {
+        "content": "Start, stop, and manage meeting recordings.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1ae19c5a-142f-4c4d-9091-8b74c1b73754",
+          "name": "Start Meeting Recording",
+          "request": {
+            "name": "Start Meeting Recording",
+            "description": {
+              "content": "Start recording an active meeting session.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recordings",
+                "start"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roomId\": \"<string>\",\n  \"templateUrl\": \"<uri>\",\n  \"transcription\": {\n    \"enabled\": \"<boolean>\",\n    \"summary\": {\n      \"enabled\": \"<boolean>\",\n      \"prompt\": \"<string>\"\n    }\n  },\n  \"config\": {\n    \"layout\": {\n      \"type\": \"<string>\",\n      \"priority\": \"<string>\",\n      \"gridSize\": \"<integer>\"\n    },\n    \"theme\": \"<string>\",\n    \"mode\": \"<string>\",\n    \"quality\": \"<string>\",\n    \"orientation\": \"<string>\"\n  },\n  \"webhookUrl\": \"<uri>\",\n  \"awsDirPath\": \"<string>\",\n  \"preSignedUrl\": \"<uri>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ee75cbe8-e6a4-433c-938d-d9fba111af0d",
+              "name": "Recording started successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    "start"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roomId\": \"abc-xyzw-lmno\",\n  \"config\": {\n    \"layout\": {\n      \"type\": \"GRID\",\n      \"priority\": \"SPEAKER\",\n      \"gridSize\": 4\n    },\n    \"theme\": \"DARK\",\n    \"quality\": \"high\",\n    \"orientation\": \"landscape\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"Recording started successfully\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b25cd9b-e647-4ae7-91a0-52b0e9de73ec",
+          "name": "Stop Meeting Recording",
+          "request": {
+            "name": "Stop Meeting Recording",
+            "description": {
+              "content": "Stop an active meeting recording.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recordings",
+                "stop"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"roomId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f59d3e55-8cae-4e8d-9ff7-de4de9942297",
+              "name": "Recording stopped successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    "stop"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"roomId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"Recording stopped successfully\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "080aa815-c3d4-4598-8bbf-c1b37be4d36b",
+          "name": "Fetch Recordings",
+          "request": {
+            "name": "Fetch Recordings",
+            "description": {
+              "content": "Retrieve a paginated list of meeting recordings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recordings"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "roomId",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "disabled": false,
+                  "key": "perPage",
+                  "value": "20"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f1368ee9-0382-4f13-b5f5-8d7c3de518fc",
+              "name": "List of recordings.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "roomId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "1"
+                    },
+                    {
+                      "key": "perPage",
+                      "value": "20"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pageInfo\": {\n    \"currentPage\": 3735,\n    \"perPage\": 9272,\n    \"lastPage\": 4043,\n    \"total\": 2194\n  },\n  \"data\": [\n    {\n      \"id\": \"string\",\n      \"roomId\": \"string\",\n      \"sessionId\": \"string\",\n      \"start\": \"1997-01-18T22:14:47.934Z\",\n      \"end\": \"1949-01-12T10:06:13.011Z\",\n      \"file\": {\n        \"fileUrl\": \"https://zmkCwCXfmORDhkMOCxdHeaqpqwFkCnD.pxiqJznDjut1GxObkfPESA+g1eMA\",\n        \"size\": 6684\n      },\n      \"status\": \"completed\",\n      \"links\": {\n        \"get_room\": \"http://VFAZofiJxmnQxPFfTTwQv.fzfyY9O.RZHJAaoii+yNKCW9i5-K-ErcT9BNTB0j9iWoKVYjuVeOkH2V2c4Y-PNQ7\",\n        \"get_session\": \"https://QSxvrRoQQbPCBCbpQlcwUCmZfHvmqUu.sercQLb4NPLFJee3.f3Ua23AvR6legbvfHY5r\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"roomId\": \"string\",\n      \"sessionId\": \"string\",\n      \"start\": \"1978-11-16T06:35:37.169Z\",\n      \"end\": \"1964-04-05T16:34:47.922Z\",\n      \"file\": {\n        \"fileUrl\": \"http://hoLCyiRwCKbacnuxQhLxvJpHFH.iduDqVPVyTZtqXWRuwEkHyEdOdMBOwfdf7DOrTFADd1krC9J6pmhbuvLmzpc\",\n        \"size\": 9143\n      },\n      \"status\": \"processing\",\n      \"links\": {\n        \"get_room\": \"https://WIha.nozvc\",\n        \"get_session\": \"https://xSNSxcvTGfERSI.ckfaMHqPlhbspkrJJnKvdTG-EVwmjvKm.Y\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "89cbec0a-a3d6-49a2-9b66-a8d0fe961a99",
+          "name": "Fetch a Recording",
+          "request": {
+            "name": "Fetch a Recording",
+            "description": {
+              "content": "Retrieve a specific recording by its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recordings",
+                ":recordingId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "recordingId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed5cb49c-eee0-42cc-a0e0-13cc242d13bd",
+              "name": "Recording details.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    ":recordingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"roomId\": \"string\",\n  \"sessionId\": \"string\",\n  \"start\": \"1995-01-16T11:59:21.584Z\",\n  \"end\": \"1959-03-24T18:18:49.522Z\",\n  \"file\": {\n    \"fileUrl\": \"http://Jt.raSiaHIch\",\n    \"size\": 7626\n  },\n  \"status\": \"failed\",\n  \"links\": {\n    \"get_room\": \"https://CvQalLIdhKvIqTBsGBGv.dmjfCySRDuOLg8qoYvAlBrm8U5Tic\",\n    \"get_session\": \"https://ZFl.eymsGiplb,ogXp9eIoplCIrIP-FxNcaX26VdHhTL48ki\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f2733cd3-c5f9-44af-a973-201597f26d96",
+              "name": "Recording not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    ":recordingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3f6c1aab-29fa-4470-a22b-84876c355935",
+          "name": "Delete a Recording",
+          "request": {
+            "name": "Delete a Recording",
+            "description": {
+              "content": "Delete a specific recording.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "recordings",
+                ":recordingId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "recordingId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a449a67c-33cd-4aa2-8322-dbb92131724f",
+              "name": "Recording deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    ":recordingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "6a69897b-9333-43e7-a4e4-c96a06c5b29f",
+              "name": "Recording not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "recordings",
+                    ":recordingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recordingId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"code\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.videosdk.live/v2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f71dbc53-da40-48df-a2b8-a95c7ebfa577",
+    "name": "VideoSDK Real-Time Communication HLS Streaming Recordings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing rooms, sessions, recordings, RTMP live streams, and HLS streaming for real-time audio and video communication applications. Requires a JWT token signed with your VideoSDK API key and secret, passed in the Authorization header (without a Bearer prefix).\n\n\nContact Support:\n Name: VideoSDK Support\n Email: support@videosdk.live",
+      "type": "text/plain"
+    }
+  }
+}
