@@ -160,6 +160,9 @@ apis:
   - type: QuotaLimits
     url: https://docs.videosdk.live/tutorials/quota-limit-and-plan
 common:
+  - type: CapabilityMap
+    url: capabilities/videosdk-capability-edges.yml
+    name: VideoSDK Business Capability Map
   - type: AgenticAccess
     url: agentic-access/videosdk-agentic-access.yml
   - type: TrustCenter

@@ -1,0 +1,35 @@
+slug: videosdk
+provider: VideoSDK
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Media, Entertainment & Telecom Content
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: HLS Streaming
+  spec_file: videosdk-hls-streaming-api-openapi.yml
+  capability_id: BC-3740.20
+  capability_id_l1: BC-3740
+  capability_name: OTT & Streaming Delivery
+  confidence: 0.78
+  evidence: POST /hls/start "Start HLS Stream"; "REST API for managing rooms, sessions, recordings, RTMP
+    live streams, and HLS streaming"; schema StreamingConfig
+  reason: Operations start, stop and enumerate HLS live streams — operation of streaming packaging and
+    live delivery to viewers, matching OTT & Streaming Delivery. Vendor is a devtool but the API's function
+    is streaming delivery.
+- tag: RTMP Streaming
+  spec_file: videosdk-rtmp-streaming-api-openapi.yml
+  capability_id: BC-3740.20
+  capability_id_l1: BC-3740
+  capability_name: OTT & Streaming Delivery
+  confidence: 0.75
+  evidence: POST /livestreams/start "Start RTMP Live Stream"; schema RtmpOutput
+  reason: Starts and stops RTMP live stream egress to streaming destinations — operation of live streaming
+    delivery, i.e. OTT & Streaming Delivery. Only two operations, so confidence moderated.
