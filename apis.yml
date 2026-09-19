@@ -86,6 +86,8 @@ apis:
   humanURL: https://docs.videosdk.live/api-reference/realtime-communication/intro
   baseURL: https://api.videosdk.live
   tags:
+  - Recording
+  tags_raw:
   - Recordings
   properties:
   - type: OpenAPI
