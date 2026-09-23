@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: VideoSDK Real-Time Communication HLS Streaming Participant Recordings API
-  description: 'REST API for managing rooms, sessions, recordings, RTMP live streams, and HLS streaming for real-time audio and video communication applications. Requires a JWT token signed with your VideoSDK API key and secret, passed in the Authorization header (without a Bearer prefix).
-
-    '
+  title: VideoSDK Real-Time Communication Participant Recordings API
+  description: REST API for managing rooms, sessions, recordings, RTMP live streams, and HLS streaming for real-time audio and video communication applications. Requires a JWT token signed with your VideoSDK API key and secret, passed in the Authorization header (without a Bearer prefix).
   version: '2.0'
   contact:
     name: VideoSDK Support
@@ -143,65 +141,6 @@ paths:
           description: Participant recording deleted.
 components:
   schemas:
-    RecordingConfig:
-      type: object
-      properties:
-        layout:
-          $ref: '#/components/schemas/LayoutConfig'
-        theme:
-          type: string
-          enum:
-          - DARK
-          - LIGHT
-          - DEFAULT
-        mode:
-          type: string
-          enum:
-          - video-and-audio
-          - audio
-        quality:
-          type: string
-          enum:
-          - low
-          - med
-          - high
-          description: low=SD, med=HD, high=Full HD
-        orientation:
-          type: string
-          enum:
-          - portrait
-          - landscape
-    PageInfo:
-      type: object
-      properties:
-        currentPage:
-          type: integer
-        perPage:
-          type: integer
-        lastPage:
-          type: integer
-        total:
-          type: integer
-    LayoutConfig:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - GRID
-          - SPOTLIGHT
-          - SIDEBAR
-          description: Layout type.
-        priority:
-          type: string
-          enum:
-          - SPEAKER
-          - PIN
-          description: Layout priority.
-        gridSize:
-          type: integer
-          description: Number of participants in grid (max 25).
-          maximum: 25
     Recording:
       type: object
       properties:
@@ -241,6 +180,65 @@ components:
             get_session:
               type: string
               format: uri
+    LayoutConfig:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - GRID
+          - SPOTLIGHT
+          - SIDEBAR
+          description: Layout type.
+        priority:
+          type: string
+          enum:
+          - SPEAKER
+          - PIN
+          description: Layout priority.
+        gridSize:
+          type: integer
+          description: Number of participants in grid (max 25).
+          maximum: 25
+    PageInfo:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+        perPage:
+          type: integer
+        lastPage:
+          type: integer
+        total:
+          type: integer
+    RecordingConfig:
+      type: object
+      properties:
+        layout:
+          $ref: '#/components/schemas/LayoutConfig'
+        theme:
+          type: string
+          enum:
+          - DARK
+          - LIGHT
+          - DEFAULT
+        mode:
+          type: string
+          enum:
+          - video-and-audio
+          - audio
+        quality:
+          type: string
+          enum:
+          - low
+          - med
+          - high
+          description: low=SD, med=HD, high=Full HD
+        orientation:
+          type: string
+          enum:
+          - portrait
+          - landscape
   securitySchemes:
     JWTAuth:
       type: apiKey

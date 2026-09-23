@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: VideoSDK Real-Time Communication HLS Streaming Recordings API
-  description: 'REST API for managing rooms, sessions, recordings, RTMP live streams, and HLS streaming for real-time audio and video communication applications. Requires a JWT token signed with your VideoSDK API key and secret, passed in the Authorization header (without a Bearer prefix).
-
-    '
+  title: VideoSDK Real-Time Communication Recordings API
+  description: REST API for managing rooms, sessions, recordings, RTMP live streams, and HLS streaming for real-time audio and video communication applications. Requires a JWT token signed with your VideoSDK API key and secret, passed in the Authorization header (without a Bearer prefix).
   version: '2.0'
   contact:
     name: VideoSDK Support
@@ -189,44 +187,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    PageInfo:
-      type: object
-      properties:
-        currentPage:
-          type: integer
-        perPage:
-          type: integer
-        lastPage:
-          type: integer
-        total:
-          type: integer
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        code:
-          type: string
-    LayoutConfig:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - GRID
-          - SPOTLIGHT
-          - SIDEBAR
-          description: Layout type.
-        priority:
-          type: string
-          enum:
-          - SPEAKER
-          - PIN
-          description: Layout priority.
-        gridSize:
-          type: integer
-          description: Number of participants in grid (max 25).
-          maximum: 25
     Recording:
       type: object
       properties:
@@ -266,6 +226,58 @@ components:
             get_session:
               type: string
               format: uri
+    LayoutConfig:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - GRID
+          - SPOTLIGHT
+          - SIDEBAR
+          description: Layout type.
+        priority:
+          type: string
+          enum:
+          - SPEAKER
+          - PIN
+          description: Layout priority.
+        gridSize:
+          type: integer
+          description: Number of participants in grid (max 25).
+          maximum: 25
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
+    PageInfo:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+        perPage:
+          type: integer
+        lastPage:
+          type: integer
+        total:
+          type: integer
+    TranscriptionConfig:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: Enable transcription.
+        summary:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+            prompt:
+              type: string
+              description: Custom prompt for AI summary generation.
     RecordingConfig:
       type: object
       properties:
@@ -294,20 +306,6 @@ components:
           enum:
           - portrait
           - landscape
-    TranscriptionConfig:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-          description: Enable transcription.
-        summary:
-          type: object
-          properties:
-            enabled:
-              type: boolean
-            prompt:
-              type: string
-              description: Custom prompt for AI summary generation.
   securitySchemes:
     JWTAuth:
       type: apiKey

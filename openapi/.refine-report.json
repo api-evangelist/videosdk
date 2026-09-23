@@ -1,26 +1,32 @@
 {
   "provider": "videosdk",
   "sources": [
-    "videosdk-hls-streaming-api-openapi.yml",
-    "videosdk-participant-recordings-api-openapi.yml",
-    "videosdk-recordings-api-openapi.yml",
-    "videosdk-rooms-api-openapi.yml",
-    "videosdk-rtmp-streaming-api-openapi.yml",
-    "videosdk-sessions-api-openapi.yml",
-    "videosdk-track-recordings-api-openapi.yml"
+    "_original/videosdk-realtime-communication-api-openapi.yml"
   ],
   "outputs": [
     "videosdk-hls-streaming-api-openapi.yml",
     "videosdk-participant-recordings-api-openapi.yml",
+    "videosdk-rtmp-streaming-api-openapi.yml",
     "videosdk-recordings-api-openapi.yml",
     "videosdk-rooms-api-openapi.yml",
-    "videosdk-rtmp-streaming-api-openapi.yml",
     "videosdk-sessions-api-openapi.yml",
     "videosdk-track-recordings-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "videosdk-realtime-communication-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "videosdk-hls-streaming-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "videosdk-participant-recordings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "videosdk-recordings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "videosdk-rooms-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "videosdk-rtmp-streaming-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "videosdk-sessions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "videosdk-track-recordings-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

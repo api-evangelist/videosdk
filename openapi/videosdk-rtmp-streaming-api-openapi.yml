@@ -1,9 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: VideoSDK Real-Time Communication HLS Streaming RTMP Streaming API
-  description: 'REST API for managing rooms, sessions, recordings, RTMP live streams, and HLS streaming for real-time audio and video communication applications. Requires a JWT token signed with your VideoSDK API key and secret, passed in the Authorization header (without a Bearer prefix).
-
-    '
+  title: VideoSDK Real-Time Communication RTMP Streaming API
+  description: REST API for managing rooms, sessions, recordings, RTMP live streams, and HLS streaming for real-time audio and video communication applications. Requires a JWT token signed with your VideoSDK API key and secret, passed in the Authorization header (without a Bearer prefix).
   version: '2.0'
   contact:
     name: VideoSDK Support
@@ -105,19 +103,6 @@ paths:
           description: Livestream stopped successfully.
 components:
   schemas:
-    RtmpOutput:
-      type: object
-      required:
-      - streamKey
-      - url
-      properties:
-        streamKey:
-          type: string
-          description: Stream key for the platform.
-        url:
-          type: string
-          format: uri
-          description: RTMP ingest URL for the platform.
     LayoutConfig:
       type: object
       properties:
@@ -152,6 +137,19 @@ components:
             prompt:
               type: string
               description: Custom prompt for AI summary generation.
+    RtmpOutput:
+      type: object
+      required:
+      - streamKey
+      - url
+      properties:
+        streamKey:
+          type: string
+          description: Stream key for the platform.
+        url:
+          type: string
+          format: uri
+          description: RTMP ingest URL for the platform.
   securitySchemes:
     JWTAuth:
       type: apiKey
