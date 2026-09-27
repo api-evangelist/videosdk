@@ -103,6 +103,33 @@ paths:
           description: Livestream stopped successfully.
 components:
   schemas:
+    RtmpOutput:
+      type: object
+      required:
+      - streamKey
+      - url
+      properties:
+        streamKey:
+          type: string
+          description: Stream key for the platform.
+        url:
+          type: string
+          format: uri
+          description: RTMP ingest URL for the platform.
+    TranscriptionConfig:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: Enable transcription.
+        summary:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+            prompt:
+              type: string
+              description: Custom prompt for AI summary generation.
     LayoutConfig:
       type: object
       properties:
@@ -123,33 +150,6 @@ components:
           type: integer
           description: Number of participants in grid (max 25).
           maximum: 25
-    TranscriptionConfig:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-          description: Enable transcription.
-        summary:
-          type: object
-          properties:
-            enabled:
-              type: boolean
-            prompt:
-              type: string
-              description: Custom prompt for AI summary generation.
-    RtmpOutput:
-      type: object
-      required:
-      - streamKey
-      - url
-      properties:
-        streamKey:
-          type: string
-          description: Stream key for the platform.
-        url:
-          type: string
-          format: uri
-          description: RTMP ingest URL for the platform.
   securitySchemes:
     JWTAuth:
       type: apiKey

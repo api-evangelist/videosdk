@@ -198,6 +198,24 @@ paths:
                 additionalProperties: true
 components:
   schemas:
+    Participant:
+      type: object
+      properties:
+        participantId:
+          type: string
+        name:
+          type: string
+        timelog:
+          type: array
+          items:
+            type: object
+            properties:
+              start:
+                type: string
+                format: date-time
+              end:
+                type: string
+                format: date-time
     Session:
       type: object
       properties:
@@ -227,6 +245,13 @@ components:
             get_session:
               type: string
               format: uri
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
     PageInfo:
       type: object
       properties:
@@ -238,31 +263,6 @@ components:
           type: integer
         total:
           type: integer
-    Participant:
-      type: object
-      properties:
-        participantId:
-          type: string
-        name:
-          type: string
-        timelog:
-          type: array
-          items:
-            type: object
-            properties:
-              start:
-                type: string
-                format: date-time
-              end:
-                type: string
-                format: date-time
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        code:
-          type: string
     SessionsResponse:
       type: object
       properties:
