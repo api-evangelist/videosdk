@@ -187,6 +187,54 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    RecordingConfig:
+      type: object
+      properties:
+        layout:
+          $ref: '#/components/schemas/LayoutConfig'
+        theme:
+          type: string
+          enum:
+          - DARK
+          - LIGHT
+          - DEFAULT
+        mode:
+          type: string
+          enum:
+          - video-and-audio
+          - audio
+        quality:
+          type: string
+          enum:
+          - low
+          - med
+          - high
+          description: low=SD, med=HD, high=Full HD
+        orientation:
+          type: string
+          enum:
+          - portrait
+          - landscape
+    LayoutConfig:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - GRID
+          - SPOTLIGHT
+          - SIDEBAR
+          description: Layout type.
+        priority:
+          type: string
+          enum:
+          - SPEAKER
+          - PIN
+          description: Layout priority.
+        gridSize:
+          type: integer
+          description: Number of participants in grid (max 25).
+          maximum: 25
     Error:
       type: object
       properties:
@@ -244,54 +292,6 @@ components:
           type: integer
         total:
           type: integer
-    RecordingConfig:
-      type: object
-      properties:
-        layout:
-          $ref: '#/components/schemas/LayoutConfig'
-        theme:
-          type: string
-          enum:
-          - DARK
-          - LIGHT
-          - DEFAULT
-        mode:
-          type: string
-          enum:
-          - video-and-audio
-          - audio
-        quality:
-          type: string
-          enum:
-          - low
-          - med
-          - high
-          description: low=SD, med=HD, high=Full HD
-        orientation:
-          type: string
-          enum:
-          - portrait
-          - landscape
-    LayoutConfig:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - GRID
-          - SPOTLIGHT
-          - SIDEBAR
-          description: Layout type.
-        priority:
-          type: string
-          enum:
-          - SPEAKER
-          - PIN
-          description: Layout priority.
-        gridSize:
-          type: integer
-          description: Number of participants in grid (max 25).
-          maximum: 25
     TranscriptionConfig:
       type: object
       properties:

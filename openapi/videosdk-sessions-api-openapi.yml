@@ -198,24 +198,15 @@ paths:
                 additionalProperties: true
 components:
   schemas:
-    Participant:
+    SessionsResponse:
       type: object
       properties:
-        participantId:
-          type: string
-        name:
-          type: string
-        timelog:
+        pageInfo:
+          $ref: '#/components/schemas/PageInfo'
+        data:
           type: array
           items:
-            type: object
-            properties:
-              start:
-                type: string
-                format: date-time
-              end:
-                type: string
-                format: date-time
+            $ref: '#/components/schemas/Session'
     Session:
       type: object
       properties:
@@ -252,6 +243,24 @@ components:
           type: string
         code:
           type: string
+    Participant:
+      type: object
+      properties:
+        participantId:
+          type: string
+        name:
+          type: string
+        timelog:
+          type: array
+          items:
+            type: object
+            properties:
+              start:
+                type: string
+                format: date-time
+              end:
+                type: string
+                format: date-time
     PageInfo:
       type: object
       properties:
@@ -263,15 +272,6 @@ components:
           type: integer
         total:
           type: integer
-    SessionsResponse:
-      type: object
-      properties:
-        pageInfo:
-          $ref: '#/components/schemas/PageInfo'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Session'
   securitySchemes:
     JWTAuth:
       type: apiKey
