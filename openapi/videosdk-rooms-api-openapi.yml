@@ -171,6 +171,42 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    PageInfo:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+        perPage:
+          type: integer
+        lastPage:
+          type: integer
+        total:
+          type: integer
+    AutoCloseConfig:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - session-ends
+          - session-end-and-deactivate
+          description: When to auto-close the room.
+        duration:
+          type: integer
+          description: Duration in minutes before auto-close (default 480).
+          default: 480
+    WebhookConfig:
+      type: object
+      properties:
+        endPoint:
+          type: string
+          format: uri
+          description: Webhook URL endpoint.
+        events:
+          type: array
+          items:
+            type: string
+          description: Array of event names or regex patterns to subscribe to.
     Room:
       type: object
       properties:
@@ -210,31 +246,6 @@ components:
             get_session:
               type: string
               format: uri
-    WebhookConfig:
-      type: object
-      properties:
-        endPoint:
-          type: string
-          format: uri
-          description: Webhook URL endpoint.
-        events:
-          type: array
-          items:
-            type: string
-          description: Array of event names or regex patterns to subscribe to.
-    AutoCloseConfig:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - session-ends
-          - session-end-and-deactivate
-          description: When to auto-close the room.
-        duration:
-          type: integer
-          description: Duration in minutes before auto-close (default 480).
-          default: 480
     Error:
       type: object
       properties:
@@ -242,17 +253,6 @@ components:
           type: string
         code:
           type: string
-    PageInfo:
-      type: object
-      properties:
-        currentPage:
-          type: integer
-        perPage:
-          type: integer
-        lastPage:
-          type: integer
-        total:
-          type: integer
   securitySchemes:
     JWTAuth:
       type: apiKey

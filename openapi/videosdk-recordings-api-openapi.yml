@@ -187,6 +187,17 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
+    PageInfo:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+        perPage:
+          type: integer
+        lastPage:
+          type: integer
+        total:
+          type: integer
     RecordingConfig:
       type: object
       properties:
@@ -242,6 +253,20 @@ components:
           type: string
         code:
           type: string
+    TranscriptionConfig:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: Enable transcription.
+        summary:
+          type: object
+          properties:
+            enabled:
+              type: boolean
+            prompt:
+              type: string
+              description: Custom prompt for AI summary generation.
     Recording:
       type: object
       properties:
@@ -281,31 +306,6 @@ components:
             get_session:
               type: string
               format: uri
-    PageInfo:
-      type: object
-      properties:
-        currentPage:
-          type: integer
-        perPage:
-          type: integer
-        lastPage:
-          type: integer
-        total:
-          type: integer
-    TranscriptionConfig:
-      type: object
-      properties:
-        enabled:
-          type: boolean
-          description: Enable transcription.
-        summary:
-          type: object
-          properties:
-            enabled:
-              type: boolean
-            prompt:
-              type: string
-              description: Custom prompt for AI summary generation.
   securitySchemes:
     JWTAuth:
       type: apiKey

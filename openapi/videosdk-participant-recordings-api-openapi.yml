@@ -141,6 +141,45 @@ paths:
           description: Participant recording deleted.
 components:
   schemas:
+    RecordingConfig:
+      type: object
+      properties:
+        layout:
+          $ref: '#/components/schemas/LayoutConfig'
+        theme:
+          type: string
+          enum:
+          - DARK
+          - LIGHT
+          - DEFAULT
+        mode:
+          type: string
+          enum:
+          - video-and-audio
+          - audio
+        quality:
+          type: string
+          enum:
+          - low
+          - med
+          - high
+          description: low=SD, med=HD, high=Full HD
+        orientation:
+          type: string
+          enum:
+          - portrait
+          - landscape
+    PageInfo:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+        perPage:
+          type: integer
+        lastPage:
+          type: integer
+        total:
+          type: integer
     Recording:
       type: object
       properties:
@@ -180,17 +219,6 @@ components:
             get_session:
               type: string
               format: uri
-    PageInfo:
-      type: object
-      properties:
-        currentPage:
-          type: integer
-        perPage:
-          type: integer
-        lastPage:
-          type: integer
-        total:
-          type: integer
     LayoutConfig:
       type: object
       properties:
@@ -211,34 +239,6 @@ components:
           type: integer
           description: Number of participants in grid (max 25).
           maximum: 25
-    RecordingConfig:
-      type: object
-      properties:
-        layout:
-          $ref: '#/components/schemas/LayoutConfig'
-        theme:
-          type: string
-          enum:
-          - DARK
-          - LIGHT
-          - DEFAULT
-        mode:
-          type: string
-          enum:
-          - video-and-audio
-          - audio
-        quality:
-          type: string
-          enum:
-          - low
-          - med
-          - high
-          description: low=SD, med=HD, high=Full HD
-        orientation:
-          type: string
-          enum:
-          - portrait
-          - landscape
   securitySchemes:
     JWTAuth:
       type: apiKey

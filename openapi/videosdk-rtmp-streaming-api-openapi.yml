@@ -103,26 +103,6 @@ paths:
           description: Livestream stopped successfully.
 components:
   schemas:
-    LayoutConfig:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - GRID
-          - SPOTLIGHT
-          - SIDEBAR
-          description: Layout type.
-        priority:
-          type: string
-          enum:
-          - SPEAKER
-          - PIN
-          description: Layout priority.
-        gridSize:
-          type: integer
-          description: Number of participants in grid (max 25).
-          maximum: 25
     TranscriptionConfig:
       type: object
       properties:
@@ -150,6 +130,26 @@ components:
           type: string
           format: uri
           description: RTMP ingest URL for the platform.
+    LayoutConfig:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - GRID
+          - SPOTLIGHT
+          - SIDEBAR
+          description: Layout type.
+        priority:
+          type: string
+          enum:
+          - SPEAKER
+          - PIN
+          description: Layout priority.
+        gridSize:
+          type: integer
+          description: Number of participants in grid (max 25).
+          maximum: 25
   securitySchemes:
     JWTAuth:
       type: apiKey

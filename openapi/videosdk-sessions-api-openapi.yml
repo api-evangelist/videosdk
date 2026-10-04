@@ -198,15 +198,35 @@ paths:
                 additionalProperties: true
 components:
   schemas:
-    SessionsResponse:
+    PageInfo:
       type: object
       properties:
-        pageInfo:
-          $ref: '#/components/schemas/PageInfo'
-        data:
+        currentPage:
+          type: integer
+        perPage:
+          type: integer
+        lastPage:
+          type: integer
+        total:
+          type: integer
+    Participant:
+      type: object
+      properties:
+        participantId:
+          type: string
+        name:
+          type: string
+        timelog:
           type: array
           items:
-            $ref: '#/components/schemas/Session'
+            type: object
+            properties:
+              start:
+                type: string
+                format: date-time
+              end:
+                type: string
+                format: date-time
     Session:
       type: object
       properties:
@@ -236,6 +256,15 @@ components:
             get_session:
               type: string
               format: uri
+    SessionsResponse:
+      type: object
+      properties:
+        pageInfo:
+          $ref: '#/components/schemas/PageInfo'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Session'
     Error:
       type: object
       properties:
@@ -243,35 +272,6 @@ components:
           type: string
         code:
           type: string
-    Participant:
-      type: object
-      properties:
-        participantId:
-          type: string
-        name:
-          type: string
-        timelog:
-          type: array
-          items:
-            type: object
-            properties:
-              start:
-                type: string
-                format: date-time
-              end:
-                type: string
-                format: date-time
-    PageInfo:
-      type: object
-      properties:
-        currentPage:
-          type: integer
-        perPage:
-          type: integer
-        lastPage:
-          type: integer
-        total:
-          type: integer
   securitySchemes:
     JWTAuth:
       type: apiKey

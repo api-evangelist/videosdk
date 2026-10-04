@@ -186,6 +186,17 @@ paths:
           description: Merge recording details.
 components:
   schemas:
+    PageInfo:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+        perPage:
+          type: integer
+        lastPage:
+          type: integer
+        total:
+          type: integer
     Recording:
       type: object
       properties:
@@ -225,17 +236,6 @@ components:
             get_session:
               type: string
               format: uri
-    PageInfo:
-      type: object
-      properties:
-        currentPage:
-          type: integer
-        perPage:
-          type: integer
-        lastPage:
-          type: integer
-        total:
-          type: integer
   securitySchemes:
     JWTAuth:
       type: apiKey

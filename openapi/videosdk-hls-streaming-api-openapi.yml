@@ -195,26 +195,49 @@ paths:
           description: Thumbnail capture initiated.
 components:
   schemas:
-    LayoutConfig:
+    PageInfo:
       type: object
       properties:
-        type:
-          type: string
-          enum:
-          - GRID
-          - SPOTLIGHT
-          - SIDEBAR
-          description: Layout type.
-        priority:
-          type: string
-          enum:
-          - SPEAKER
-          - PIN
-          description: Layout priority.
-        gridSize:
+        currentPage:
           type: integer
-          description: Number of participants in grid (max 25).
-          maximum: 25
+        perPage:
+          type: integer
+        lastPage:
+          type: integer
+        total:
+          type: integer
+    StreamingConfig:
+      type: object
+      properties:
+        layout:
+          $ref: '#/components/schemas/LayoutConfig'
+        theme:
+          type: string
+          enum:
+          - DARK
+          - LIGHT
+          - DEFAULT
+        mode:
+          type: string
+          enum:
+          - video-and-audio
+          - audio
+        quality:
+          type: string
+          enum:
+          - low
+          - med
+          - high
+        orientation:
+          type: string
+          enum:
+          - portrait
+          - landscape
+        recording:
+          type: object
+          properties:
+            enabled:
+              type: boolean
     HlsStream:
       type: object
       properties:
@@ -249,6 +272,26 @@ components:
             get_session:
               type: string
               format: uri
+    LayoutConfig:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - GRID
+          - SPOTLIGHT
+          - SIDEBAR
+          description: Layout type.
+        priority:
+          type: string
+          enum:
+          - SPEAKER
+          - PIN
+          description: Layout priority.
+        gridSize:
+          type: integer
+          description: Number of participants in grid (max 25).
+          maximum: 25
     Error:
       type: object
       properties:
@@ -256,49 +299,6 @@ components:
           type: string
         code:
           type: string
-    StreamingConfig:
-      type: object
-      properties:
-        layout:
-          $ref: '#/components/schemas/LayoutConfig'
-        theme:
-          type: string
-          enum:
-          - DARK
-          - LIGHT
-          - DEFAULT
-        mode:
-          type: string
-          enum:
-          - video-and-audio
-          - audio
-        quality:
-          type: string
-          enum:
-          - low
-          - med
-          - high
-        orientation:
-          type: string
-          enum:
-          - portrait
-          - landscape
-        recording:
-          type: object
-          properties:
-            enabled:
-              type: boolean
-    PageInfo:
-      type: object
-      properties:
-        currentPage:
-          type: integer
-        perPage:
-          type: integer
-        lastPage:
-          type: integer
-        total:
-          type: integer
     TranscriptionConfig:
       type: object
       properties:
