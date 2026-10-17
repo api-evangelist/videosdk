@@ -209,6 +209,22 @@ components:
           type: integer
         total:
           type: integer
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
+    SessionsResponse:
+      type: object
+      properties:
+        pageInfo:
+          $ref: '#/components/schemas/PageInfo'
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/Session'
     Participant:
       type: object
       properties:
@@ -256,22 +272,6 @@ components:
             get_session:
               type: string
               format: uri
-    SessionsResponse:
-      type: object
-      properties:
-        pageInfo:
-          $ref: '#/components/schemas/PageInfo'
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/Session'
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        code:
-          type: string
   securitySchemes:
     JWTAuth:
       type: apiKey

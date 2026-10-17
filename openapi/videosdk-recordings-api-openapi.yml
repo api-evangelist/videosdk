@@ -187,17 +187,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    PageInfo:
-      type: object
-      properties:
-        currentPage:
-          type: integer
-        perPage:
-          type: integer
-        lastPage:
-          type: integer
-        total:
-          type: integer
     RecordingConfig:
       type: object
       properties:
@@ -226,33 +215,6 @@ components:
           enum:
           - portrait
           - landscape
-    LayoutConfig:
-      type: object
-      properties:
-        type:
-          type: string
-          enum:
-          - GRID
-          - SPOTLIGHT
-          - SIDEBAR
-          description: Layout type.
-        priority:
-          type: string
-          enum:
-          - SPEAKER
-          - PIN
-          description: Layout priority.
-        gridSize:
-          type: integer
-          description: Number of participants in grid (max 25).
-          maximum: 25
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        code:
-          type: string
     TranscriptionConfig:
       type: object
       properties:
@@ -267,6 +229,24 @@ components:
             prompt:
               type: string
               description: Custom prompt for AI summary generation.
+    PageInfo:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+        perPage:
+          type: integer
+        lastPage:
+          type: integer
+        total:
+          type: integer
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
     Recording:
       type: object
       properties:
@@ -306,6 +286,26 @@ components:
             get_session:
               type: string
               format: uri
+    LayoutConfig:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+          - GRID
+          - SPOTLIGHT
+          - SIDEBAR
+          description: Layout type.
+        priority:
+          type: string
+          enum:
+          - SPEAKER
+          - PIN
+          description: Layout priority.
+        gridSize:
+          type: integer
+          description: Number of participants in grid (max 25).
+          maximum: 25
   securitySchemes:
     JWTAuth:
       type: apiKey

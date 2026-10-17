@@ -171,17 +171,6 @@ paths:
                 $ref: '#/components/schemas/Error'
 components:
   schemas:
-    PageInfo:
-      type: object
-      properties:
-        currentPage:
-          type: integer
-        perPage:
-          type: integer
-        lastPage:
-          type: integer
-        total:
-          type: integer
     AutoCloseConfig:
       type: object
       properties:
@@ -195,6 +184,24 @@ components:
           type: integer
           description: Duration in minutes before auto-close (default 480).
           default: 480
+    PageInfo:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+        perPage:
+          type: integer
+        lastPage:
+          type: integer
+        total:
+          type: integer
+    Error:
+      type: object
+      properties:
+        message:
+          type: string
+        code:
+          type: string
     WebhookConfig:
       type: object
       properties:
@@ -246,13 +253,6 @@ components:
             get_session:
               type: string
               format: uri
-    Error:
-      type: object
-      properties:
-        message:
-          type: string
-        code:
-          type: string
   securitySchemes:
     JWTAuth:
       type: apiKey

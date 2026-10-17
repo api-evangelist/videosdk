@@ -141,6 +141,17 @@ paths:
           description: Participant recording deleted.
 components:
   schemas:
+    PageInfo:
+      type: object
+      properties:
+        currentPage:
+          type: integer
+        perPage:
+          type: integer
+        lastPage:
+          type: integer
+        total:
+          type: integer
     RecordingConfig:
       type: object
       properties:
@@ -169,17 +180,6 @@ components:
           enum:
           - portrait
           - landscape
-    PageInfo:
-      type: object
-      properties:
-        currentPage:
-          type: integer
-        perPage:
-          type: integer
-        lastPage:
-          type: integer
-        total:
-          type: integer
     Recording:
       type: object
       properties:
