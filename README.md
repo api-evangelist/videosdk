@@ -64,63 +64,169 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Real-time voice, video, and AI agent platform for developers. VideoSDK provides REST and WebSocket APIs for building video conferencing, live streaming, interactive broadcast applications, and real-time AI agent integrations.
+Real-time voice, video, and AI agent platform for developers. VideoSDK provides REST and WebSocket APIs for building video conferencing, live streaming, interactive broadcast applications, and real-time AI agent integrations with SDKs for JavaScript, React, Flutter, React Native, Android, and iOS.
 
-**Website:** https://www.videosdk.live  
-**API Docs:** https://docs.videosdk.live  
-**GitHub Org:** https://github.com/videosdk-live  
+**Areas:** Video · Audio · WebRTC · Real-Time Communication · Live Streaming · HLS · RTMP · AI Agents · Video Conferencing · WebSocket
 
-## APIs
+## VideoSDK on APIs.io
 
-### Real-Time Communication API
+Everything profiled for VideoSDK is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/videosdk/](https://apis.io/providers/videosdk/)** — or go straight to one of the APIs or properties below.
 
-Base URL: `https://api.videosdk.live`
+### APIs (7)
 
-The VideoSDK REST API covers:
+- [VideoSDK HLS Streaming API](https://apis.io/apis/videosdk/videosdk-hls-streaming-api/) — HLS live streaming and playback management.
+- [VideoSDK Participant Recordings API](https://apis.io/apis/videosdk/videosdk-participant-recordings-api/) — Per-participant recording management.
+- [VideoSDK Recordings API](https://apis.io/apis/videosdk/videosdk-recordings-api/) — Start, stop, and manage meeting recordings.
+- [VideoSDK Rooms API](https://apis.io/apis/videosdk/videosdk-rooms-api/) — Manage meeting rooms.
+- [VideoSDK RTMP Streaming API](https://apis.io/apis/videosdk/videosdk-rtmp-streaming-api/) — RTMP live streaming to external platforms.
+- [VideoSDK Sessions API](https://apis.io/apis/videosdk/videosdk-sessions-api/) — Manage and query meeting sessions and participants.
+- [VideoSDK Track Recordings API](https://apis.io/apis/videosdk/videosdk-track-recordings-api/) — Per-track and composite recording management.
 
-- **Rooms** — Create and validate video rooms
-- **Sessions** — Retrieve session data, participant lists, and quality statistics
-- **Recordings** — Start/stop meeting recordings, participant recordings, track recordings, and merged recordings
-- **Live Streams (RTMP-Out)** — Start and stop RTMP streams to external destinations
-- **HLS Streaming** — Manage HLS streams and capture thumbnails
+### Published properties
 
-Authentication uses JWT access tokens passed in the `Authorization` header, generated from an API key and secret obtained from the VideoSDK dashboard.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## SDKs
+#### Agentic access (1)
 
-VideoSDK provides client SDKs for:
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- JavaScript / React
-- React Native (Android / iOS)
-- Flutter (Android / iOS)
-- Android (Kotlin)
-- iOS (Swift / Objective-C)
-- Python (AI Agents framework)
+- [Videosdk Agentic Access](https://apis.io/agentic-access/videosdk/videosdk-agentic-access/)
 
-## Pricing
+#### JSON Schema (5)
 
-VideoSDK uses usage-based participant-minute billing:
+The data models the API reads and writes.
 
-| Service | Rate |
-|---|---|
-| Audio Call | $0.0006 / participant-minute |
-| HD Video (720p) | $0.003 / participant-minute |
-| Full HD Video (1080p) | $0.007 / participant-minute |
-| 2K / 2K+ Video | $0.007 / participant-minute |
+- [HlsStream](https://apis.io/schemas/videosdk/hls-stream/)
+- [Participant](https://apis.io/schemas/videosdk/participant/)
+- [Recording](https://apis.io/schemas/videosdk/recording/)
+- [Room](https://apis.io/schemas/videosdk/room/)
+- [Session](https://apis.io/schemas/videosdk/session/)
 
-The Free plan includes 10,000 participant-minutes per month. See [plans/videosdk-plans-pricing.yml](plans/videosdk-plans-pricing.yml) for full plan details.
+#### JSON-LD (1)
 
-## Links
+Linked-data contexts for the provider's vocabulary.
 
+- [Videosdk Context](https://apis.io/jsonld/videosdk/videosdk-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [VideoSDK Domain Vocabulary](https://apis.io/vocabularies/videosdk/videosdk-vocabulary/)
+
+#### Examples (5)
+
+Example requests and responses.
+
+- [Create Room](https://apis.io/examples/videosdk/create-room/)
+- [Fetch Sessions](https://apis.io/examples/videosdk/fetch-sessions/)
+- [Start Hls Stream](https://apis.io/examples/videosdk/start-hls-stream/)
+- [Start Recording](https://apis.io/examples/videosdk/start-recording/)
+- [Start Rtmp Livestream](https://apis.io/examples/videosdk/start-rtmp-livestream/)
+
+#### Collections (7)
+
+Postman and Open Collection request collections.
+
+- [VideoSDK Real-Time Communication HLS Streaming API](https://apis.io/collections/videosdk/open-videosdk-hls-streaming-api/)
+- [VideoSDK Real-Time Communication HLS Streaming Participant Recordings API](https://apis.io/collections/videosdk/open-videosdk-participant-recordings-api/)
+- [VideoSDK Real-Time Communication HLS Streaming Recordings API](https://apis.io/collections/videosdk/open-videosdk-recordings-api/)
+- [VideoSDK Real-Time Communication HLS Streaming Rooms API](https://apis.io/collections/videosdk/open-videosdk-rooms-api/)
+- [VideoSDK Real-Time Communication HLS Streaming RTMP Streaming API](https://apis.io/collections/videosdk/open-videosdk-rtmp-streaming-api/)
+- [VideoSDK Real-Time Communication HLS Streaming Sessions API](https://apis.io/collections/videosdk/open-videosdk-sessions-api/)
+- [VideoSDK Real-Time Communication HLS Streaming Track Recordings API](https://apis.io/collections/videosdk/open-videosdk-track-recordings-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [VideoSDK — jsonschema rules](https://apis.io/rules/videosdk/videosdk-jsonschema-spectral-rules/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Videosdk Authentication](https://apis.io/security/videosdk/videosdk-authentication/)
+- [Videosdk Domain Security](https://apis.io/security/videosdk/videosdk-domain-security/)
+- [Videosdk Trust Center](https://apis.io/security/videosdk/videosdk-trust-center/)
+- [Videosdk Vulnerability Disclosure](https://apis.io/security/videosdk/videosdk-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Videosdk Plans Pricing](https://apis.io/plans/videosdk/videosdk-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Videosdk Rate Limits](https://apis.io/rate-limits/videosdk/videosdk-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Videosdk Finops](https://apis.io/finops/videosdk/videosdk-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.videosdk.live)
 - [Documentation](https://docs.videosdk.live)
-- [API Reference](https://docs.videosdk.live/api-reference/realtime-communication/intro)
 - [Pricing](https://www.videosdk.live/pricing)
 - [Blog](https://www.videosdk.live/blog)
-- [GitHub](https://github.com/videosdk-live)
-- [LinkedIn](https://www.linkedin.com/company/video-sdk)
-- [X / Twitter](https://x.com/video_sdk)
-- [Support](https://www.videosdk.live/support)
 
-## Maintainers
+## API Evangelist rating
 
-**Kin Lane** — kin@apievangelist.com
+**Kin Score 34.0** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 57.4 |
+| Contract governance | 9.8 |
+| Operational transparency | 5.3 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 26.3 |
+
+**Agent readiness 26.2** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 27.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/videosdk/](https://apis.io/providers/videosdk/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for VideoSDK: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/videosdk/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
